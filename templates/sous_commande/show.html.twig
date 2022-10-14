@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SousCommande{% endblock %}
+
+{% block body %}
+    <h1>SousCommande</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ sous_commande.id }}</td>
+            </tr>
+            <tr>
+                <th>Quantite</th>
+                <td>{{ sous_commande.quantite }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_sous_commande_index') }}">back to list</a>
+
+    <a href="{{ path('app_sous_commande_edit', {'id': sous_commande.id}) }}">edit</a>
+
+    {{ include('sous_commande/_delete_form.html.twig') }}
+{% endblock %}
