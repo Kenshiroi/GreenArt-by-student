@@ -194,6 +194,6 @@ class __TwigTemplate_2e28938bc97b201051005636635acfba extends Template
         {% block body %}{% endblock %}
     </body>
 </html>
-", "base.html.twig", "C:\\xampp\\htdocs\\projet\\templates\\base.html.twig");
+", "base.html.twig", "F:\\Xampp\\htdocs\\GreenArt-by-student\\templates\\base.html.twig");
     }
 }
