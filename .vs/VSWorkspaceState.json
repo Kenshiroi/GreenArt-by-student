@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\src",
+    "\\src\\Controller",
+    "\\src\\Entity",
+    "\\src\\Repository"
   ],
-  "SelectedNode": "\\F:\\Xampp\\htdocs\\GreenArt",
+  "SelectedNode": "\\src",
   "PreviewInSolutionExplorer": false
 }
