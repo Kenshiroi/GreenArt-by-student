@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Createur index{% endblock %}
+
+{% block body %}
+    <h1>Createur index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>NomCreateur</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for createur in createurs %}
+            <tr>
+                <td>{{ createur.id }}</td>
+                <td>{{ createur.nomCreateur }}</td>
+                <td>
+                    <a href="{{ path('app_createur_show', {'id': createur.id}) }}">show</a>
+                    <a href="{{ path('app_createur_edit', {'id': createur.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_createur_new') }}">Create new</a>
+{% endblock %}

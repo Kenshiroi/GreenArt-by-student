@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SousCommande index{% endblock %}
+
+{% block body %}
+    <h1>SousCommande index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Quantite</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sous_commande in sous_commandes %}
+            <tr>
+                <td>{{ sous_commande.quantite }}</td>
+                <td>
+                    <a href="{{ path('app_sous_commande_show', {'idVariante': sous_commande.idVariante}) }}">show</a>
+                    <a href="{{ path('app_sous_commande_edit', {'idVariante': sous_commande.idVariante}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_sous_commande_new') }}">Create new</a>
+{% endblock %}
