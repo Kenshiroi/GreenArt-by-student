@@ -12,9 +12,7 @@ class CreateurType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom')
-            ->add('pays')
-            ->add('formation')
+            ->add('nomCreateur')
         ;
     }
 

@@ -13,8 +13,8 @@ class SousCommandeType extends AbstractType
     {
         $builder
             ->add('quantite')
+            ->add('idVariante')
             ->add('idCommande')
-            ->add('idModele')
         ;
     }
 

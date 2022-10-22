@@ -12,36 +12,20 @@
                 <td>{{ modele.id }}</td>
             </tr>
             <tr>
-                <th>Nom</th>
-                <td>{{ modele.nom }}</td>
+                <th>NomModele</th>
+                <td>{{ modele.nomModele }}</td>
             </tr>
             <tr>
-                <th>Prix</th>
-                <td>{{ modele.prix }}</td>
+                <th>ImageModele</th>
+                <td>{{ modele.imageModele }}</td>
             </tr>
             <tr>
-                <th>Image</th>
-                <td>{{ modele.image }}</td>
+                <th>DescriptionModele</th>
+                <td>{{ modele.descriptionModele }}</td>
             </tr>
             <tr>
-                <th>QuantiteStock</th>
-                <td>{{ modele.quantiteStock }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ modele.description }}</td>
-            </tr>
-            <tr>
-                <th>Variante</th>
-                <td>{{ modele.variante }}</td>
-            </tr>
-            <tr>
-                <th>DateCreation</th>
-                <td>{{ modele.dateCreation ? modele.dateCreation|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>PourcentageCreateur</th>
-                <td>{{ modele.pourcentageCreateur }}</td>
+                <th>DateAjout</th>
+                <td>{{ modele.dateAjout ? modele.dateAjout|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
         </tbody>
     </table>

@@ -9,7 +9,12 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Prixtotal</th>
+                <th>DateCommande</th>
+                <th>AdresseFacturation</th>
+                <th>AdresseLivraison</th>
+                <th>PrixLivraison</th>
+                <th>PrixProduits</th>
+                <th>PaymentMethod</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -17,7 +22,12 @@
         {% for commande in commandes %}
             <tr>
                 <td>{{ commande.id }}</td>
-                <td>{{ commande.prixtotal }}</td>
+                <td>{{ commande.dateCommande ? commande.dateCommande|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ commande.adresseFacturation }}</td>
+                <td>{{ commande.adresseLivraison }}</td>
+                <td>{{ commande.prixLivraison }}</td>
+                <td>{{ commande.prixProduits }}</td>
+                <td>{{ commande.paymentMethod }}</td>
                 <td>
                     <a href="{{ path('app_commande_show', {'id': commande.id}) }}">show</a>
                     <a href="{{ path('app_commande_edit', {'id': commande.id}) }}">edit</a>
@@ -25,7 +35,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="8">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

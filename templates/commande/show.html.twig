@@ -12,8 +12,28 @@
                 <td>{{ commande.id }}</td>
             </tr>
             <tr>
-                <th>Prixtotal</th>
-                <td>{{ commande.prixtotal }}</td>
+                <th>DateCommande</th>
+                <td>{{ commande.dateCommande ? commande.dateCommande|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>AdresseFacturation</th>
+                <td>{{ commande.adresseFacturation }}</td>
+            </tr>
+            <tr>
+                <th>AdresseLivraison</th>
+                <td>{{ commande.adresseLivraison }}</td>
+            </tr>
+            <tr>
+                <th>PrixLivraison</th>
+                <td>{{ commande.prixLivraison }}</td>
+            </tr>
+            <tr>
+                <th>PrixProduits</th>
+                <td>{{ commande.prixProduits }}</td>
+            </tr>
+            <tr>
+                <th>PaymentMethod</th>
+                <td>{{ commande.paymentMethod }}</td>
             </tr>
         </tbody>
     </table>

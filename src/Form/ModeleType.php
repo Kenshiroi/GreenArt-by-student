@@ -12,15 +12,10 @@ class ModeleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom')
-            ->add('prix')
-            ->add('image')
-            ->add('quantiteStock')
-            ->add('description')
-            ->add('variante')
-            ->add('dateCreation')
-            ->add('pourcentageCreateur')
-            ->add('idCreateur')
+            ->add('nomModele')
+            ->add('imageModele')
+            ->add('descriptionModele')
+            ->add('dateAjout')
         ;
     }
 

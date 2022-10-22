@@ -17,38 +17,31 @@ class Modele
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $nom = null;
+    private ?string $nomModele = null;
 
-    #[ORM\Column]
-    private ?float $prix = null;
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $imageModele = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $image = null;
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $descriptionModele = null;
 
-    #[ORM\Column]
-    private ?int $quantiteStock = null;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $dateAjout = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $description = null;
+    #[ORM\OneToMany(mappedBy: 'idModele', targetEntity: Variante::class)]
+    private Collection $variantes;
 
-    #[ORM\Column(length: 255)]
-    private ?string $variante = null;
+    #[ORM\OneToMany(mappedBy: 'idModele', targetEntity: CreePar::class)]
+    private Collection $creePars;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $dateCreation = null;
-
-    #[ORM\Column]
-    private ?float $pourcentageCreateur = null;
-
-    #[ORM\ManyToOne(inversedBy: 'modeles')]
-    private ?Createur $idCreateur = null;
-
-    #[ORM\OneToMany(mappedBy: 'idModele', targetEntity: SousCommande::class)]
-    private Collection $sousCommandes;
+    #[ORM\OneToMany(mappedBy: 'idModele', targetEntity: CommentaireModele::class)]
+    private Collection $commentaireModeles;
 
     public function __construct()
     {
-        $this->sousCommandes = new ArrayCollection();
+        $this->variantes = new ArrayCollection();
+        $this->creePars = new ArrayCollection();
+        $this->commentaireModeles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -56,138 +49,138 @@ class Modele
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getNomModele(): ?string
     {
-        return $this->nom;
+        return $this->nomModele;
     }
 
-    public function setNom(string $nom): self
+    public function setNomModele(string $nomModele): self
     {
-        $this->nom = $nom;
+        $this->nomModele = $nomModele;
 
         return $this;
     }
 
-    public function getPrix(): ?float
+    public function getImageModele(): ?string
     {
-        return $this->prix;
+        return $this->imageModele;
     }
 
-    public function setPrix(float $prix): self
+    public function setImageModele(string $imageModele): self
     {
-        $this->prix = $prix;
+        $this->imageModele = $imageModele;
 
         return $this;
     }
 
-    public function getQuantiteStock(): ?int
+    public function getDescriptionModele(): ?string
     {
-        return $this->quantiteStock;
+        return $this->descriptionModele;
     }
 
-    public function setQuantiteStock(?string $quantiteStock): self
+    public function setDescriptionModele(string $descriptionModele): self
     {
-        $this->quantiteStock = $quantiteStock;
+        $this->descriptionModele = $descriptionModele;
 
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getDateAjout(): ?\DateTimeInterface
     {
-        return $this->image;
+        return $this->dateAjout;
     }
 
-    public function setImage(int $image): self
+    public function setDateAjout(\DateTimeInterface $dateAjout): self
     {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(?string $description): self
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    public function getVariante(): ?string
-    {
-        return $this->variante;
-    }
-
-    public function setVariante(string $variante): self
-    {
-        $this->variante = $variante;
-
-        return $this;
-    }
-
-    public function getDateCreation(): ?\DateTimeInterface
-    {
-        return $this->dateCreation;
-    }
-
-    public function setDateCreation(\DateTimeInterface $dateCreation): self
-    {
-        $this->dateCreation = $dateCreation;
-
-        return $this;
-    }
-
-    public function getPourcentageCreateur(): ?float
-    {
-        return $this->pourcentageCreateur;
-    }
-
-    public function setPourcentageCreateur(float $pourcentageCreateur): self
-    {
-        $this->pourcentageCreateur = $pourcentageCreateur;
-
-        return $this;
-    }
-
-    public function getIdCreateur(): ?Createur
-    {
-        return $this->idCreateur;
-    }
-
-    public function setIdCreateur(?Createur $idCreateur): self
-    {
-        $this->idCreateur = $idCreateur;
+        $this->dateAjout = $dateAjout;
 
         return $this;
     }
 
     /**
-     * @return Collection<int, SousCommande>
+     * @return Collection<int, Variante>
      */
-    public function getSousCommandes(): Collection
+    public function getVariantes(): Collection
     {
-        return $this->sousCommandes;
+        return $this->variantes;
     }
 
-    public function addSousCommande(SousCommande $sousCommande): self
+    public function addVariante(Variante $variante): self
     {
-        if (!$this->sousCommandes->contains($sousCommande)) {
-            $this->sousCommandes->add($sousCommande);
-            $sousCommande->setIdModele($this);
+        if (!$this->variantes->contains($variante)) {
+            $this->variantes->add($variante);
+            $variante->setIdModele($this);
         }
 
         return $this;
     }
 
-    public function removeSousCommande(SousCommande $sousCommande): self
+    public function removeVariante(Variante $variante): self
     {
-        if ($this->sousCommandes->removeElement($sousCommande)) {
+        if ($this->variantes->removeElement($variante)) {
             // set the owning side to null (unless already changed)
-            if ($sousCommande->getIdModele() === $this) {
-                $sousCommande->setIdModele(null);
+            if ($variante->getIdModele() === $this) {
+                $variante->setIdModele(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CreePar>
+     */
+    public function getCreePars(): Collection
+    {
+        return $this->creePars;
+    }
+
+    public function addCreePar(CreePar $creePar): self
+    {
+        if (!$this->creePars->contains($creePar)) {
+            $this->creePars->add($creePar);
+            $creePar->setIdModele($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCreePar(CreePar $creePar): self
+    {
+        if ($this->creePars->removeElement($creePar)) {
+            // set the owning side to null (unless already changed)
+            if ($creePar->getIdModele() === $this) {
+                $creePar->setIdModele(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CommentaireModele>
+     */
+    public function getCommentaireModeles(): Collection
+    {
+        return $this->commentaireModeles;
+    }
+
+    public function addCommentaireModele(CommentaireModele $commentaireModele): self
+    {
+        if (!$this->commentaireModeles->contains($commentaireModele)) {
+            $this->commentaireModeles->add($commentaireModele);
+            $commentaireModele->setIdModele($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaireModele(CommentaireModele $commentaireModele): self
+    {
+        if ($this->commentaireModeles->removeElement($commentaireModele)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaireModele->getIdModele() === $this) {
+                $commentaireModele->setIdModele(null);
             }
         }
 

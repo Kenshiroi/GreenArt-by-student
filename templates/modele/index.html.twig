@@ -9,14 +9,10 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Nom</th>
-                <th>Prix</th>
-                <th>Image</th>
-                <th>QuantiteStock</th>
-                <th>Description</th>
-                <th>Variante</th>
-                <th>DateCreation</th>
-                <th>PourcentageCreateur</th>
+                <th>NomModele</th>
+                <th>ImageModele</th>
+                <th>DescriptionModele</th>
+                <th>DateAjout</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -24,14 +20,10 @@
         {% for modele in modeles %}
             <tr>
                 <td>{{ modele.id }}</td>
-                <td>{{ modele.nom }}</td>
-                <td>{{ modele.prix }}</td>
-                <td>{{ modele.image }}</td>
-                <td>{{ modele.quantiteStock }}</td>
-                <td>{{ modele.description }}</td>
-                <td>{{ modele.variante }}</td>
-                <td>{{ modele.dateCreation ? modele.dateCreation|date('Y-m-d') : '' }}</td>
-                <td>{{ modele.pourcentageCreateur }}</td>
+                <td>{{ modele.nomModele }}</td>
+                <td>{{ modele.imageModele }}</td>
+                <td>{{ modele.descriptionModele }}</td>
+                <td>{{ modele.dateAjout ? modele.dateAjout|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
                     <a href="{{ path('app_modele_show', {'id': modele.id}) }}">show</a>
                     <a href="{{ path('app_modele_edit', {'id': modele.id}) }}">edit</a>
@@ -39,7 +31,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="10">no records found</td>
+                <td colspan="6">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

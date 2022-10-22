@@ -40,7 +40,7 @@ class SousCommandeController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_sous_commande_show', methods: ['GET'])]
+    #[Route('/{idVariante}', name: 'app_sous_commande_show', methods: ['GET'])]
     public function show(SousCommande $sousCommande): Response
     {
         return $this->render('sous_commande/show.html.twig', [
@@ -48,7 +48,7 @@ class SousCommandeController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_sous_commande_edit', methods: ['GET', 'POST'])]
+    #[Route('/{idVariante}/edit', name: 'app_sous_commande_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, SousCommande $sousCommande, SousCommandeRepository $sousCommandeRepository): Response
     {
         $form = $this->createForm(SousCommandeType::class, $sousCommande);
@@ -66,10 +66,10 @@ class SousCommandeController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_sous_commande_delete', methods: ['POST'])]
+    #[Route('/{idVariante}', name: 'app_sous_commande_delete', methods: ['POST'])]
     public function delete(Request $request, SousCommande $sousCommande, SousCommandeRepository $sousCommandeRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$sousCommande->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$sousCommande->getIdVariante(), $request->request->get('_token'))) {
             $sousCommandeRepository->remove($sousCommande, true);
         }
 

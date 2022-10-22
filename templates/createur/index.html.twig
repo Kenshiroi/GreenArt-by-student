@@ -9,9 +9,7 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Nom</th>
-                <th>Pays</th>
-                <th>Formation</th>
+                <th>NomCreateur</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -19,9 +17,7 @@
         {% for createur in createurs %}
             <tr>
                 <td>{{ createur.id }}</td>
-                <td>{{ createur.nom }}</td>
-                <td>{{ createur.pays }}</td>
-                <td>{{ createur.formation }}</td>
+                <td>{{ createur.nomCreateur }}</td>
                 <td>
                     <a href="{{ path('app_createur_show', {'id': createur.id}) }}">show</a>
                     <a href="{{ path('app_createur_edit', {'id': createur.id}) }}">edit</a>
@@ -29,7 +25,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="3">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
