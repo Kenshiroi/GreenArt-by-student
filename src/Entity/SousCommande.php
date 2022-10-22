@@ -9,22 +9,24 @@ use Doctrine\ORM\Mapping as ORM;
 class SousCommande
 {
     #[ORM\Id]
-    #[ORM\Column]
-    private ?int $idVariante = null;
-
+    #[ORM\ManyToOne(inversedBy: 'sousCommandes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Variante $idVariante = null;
+    
     #[ORM\Id]
-    #[ORM\Column]
-    private ?int $idCommande = null;
+    #[ORM\ManyToOne(inversedBy: 'sousCommandes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Commande $idCommande = null;
 
     #[ORM\Column]
     private ?int $quantite = null;
 
-    public function getIdVariante(): ?int
+    public function getIdVariante(): ?Variante
     {
         return $this->idVariante;
     }
 
-    public function getIdCommande(): ?int
+    public function getIdCommande(): ?Commande
     {
         return $this->idCommande;
     }

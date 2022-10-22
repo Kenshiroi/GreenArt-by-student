@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommandeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -32,9 +34,17 @@ class Commande
     #[ORM\Column(type: Types::TEXT)]
     private ?string $paymentMethod = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(inversedBy: 'commandes')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Utilisateur $idUser = null;
+
+    #[ORM\OneToMany(mappedBy: 'idCommande', targetEntity: SousCommande::class)]
+    private Collection $sousCommandes;
+
+    public function __construct()
+    {
+        $this->sousCommandes = new ArrayCollection();
+    }
 
     public function getid(): ?int
     {
@@ -121,6 +131,36 @@ class Commande
     public function setIdUser(?Utilisateur $idUser): self
     {
         $this->idUser = $idUser;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, SousCommande>
+     */
+    public function getSousCommandes(): Collection
+    {
+        return $this->sousCommandes;
+    }
+
+    public function addSousCommande(SousCommande $sousCommande): self
+    {
+        if (!$this->sousCommandes->contains($sousCommande)) {
+            $this->sousCommandes->add($sousCommande);
+            $sousCommande->setIdCommande($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSousCommande(SousCommande $sousCommande): self
+    {
+        if ($this->sousCommandes->removeElement($sousCommande)) {
+            // set the owning side to null (unless already changed)
+            if ($sousCommande->getIdCommande() === $this) {
+                $sousCommande->setIdCommande(null);
+            }
+        }
 
         return $this;
     }

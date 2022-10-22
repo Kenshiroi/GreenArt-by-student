@@ -9,19 +9,21 @@ use Doctrine\ORM\Mapping as ORM;
 class CreePar
 {
     #[ORM\Id]
-    #[ORM\Column]
-    private ?int $idModele = null;
+    #[ORM\ManyToOne(inversedBy: 'creePars')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Modele $idModele = null;
     
     #[ORM\Id]
-    #[ORM\Column]
-    private ?int $idCreateur = null;
+    #[ORM\ManyToOne(inversedBy: 'creePars')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Createur $idCreateur = null;
 
-    public function getIdModele(): ?int
+    public function getIdModele(): ?Modele
     {
         return $this->idModele;
     }
 
-    public function getIdCreateur(): ?int
+    public function getIdCreateur(): ?Createur
     {
         return $this->idCreateur;
     }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UtilisateurRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -31,6 +33,18 @@ class Utilisateur
 
     #[ORM\Column]
     private ?int $rightUser = null;
+
+    #[ORM\OneToMany(mappedBy: 'idUser', targetEntity: Commande::class)]
+    private Collection $commandes;
+
+    #[ORM\OneToMany(mappedBy: 'idUser', targetEntity: CommentaireModele::class)]
+    private Collection $commentaireModeles;
+
+    public function __construct()
+    {
+        $this->commandes = new ArrayCollection();
+        $this->commentaireModeles = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -105,6 +119,66 @@ class Utilisateur
     public function setRightUser(int $rightUser): self
     {
         $this->rightUser = $rightUser;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Commande>
+     */
+    public function getCommandes(): Collection
+    {
+        return $this->commandes;
+    }
+
+    public function addCommande(Commande $commande): self
+    {
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes->add($commande);
+            $commande->setIdUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): self
+    {
+        if ($this->commandes->removeElement($commande)) {
+            // set the owning side to null (unless already changed)
+            if ($commande->getIdUser() === $this) {
+                $commande->setIdUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CommentaireModele>
+     */
+    public function getCommentaireModeles(): Collection
+    {
+        return $this->commentaireModeles;
+    }
+
+    public function addCommentaireModele(CommentaireModele $commentaireModele): self
+    {
+        if (!$this->commentaireModeles->contains($commentaireModele)) {
+            $this->commentaireModeles->add($commentaireModele);
+            $commentaireModele->setIdUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaireModele(CommentaireModele $commentaireModele): self
+    {
+        if ($this->commentaireModeles->removeElement($commentaireModele)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaireModele->getIdUser() === $this) {
+                $commentaireModele->setIdUser(null);
+            }
+        }
 
         return $this;
     }
