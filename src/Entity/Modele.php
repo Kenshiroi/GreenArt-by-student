@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ModeleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -25,6 +27,22 @@ class Modele
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateAjout = null;
+
+    #[ORM\OneToMany(mappedBy: 'idModele', targetEntity: Variante::class)]
+    private Collection $variantes;
+
+    #[ORM\OneToMany(mappedBy: 'idModele', targetEntity: CreePar::class)]
+    private Collection $creePars;
+
+    #[ORM\OneToMany(mappedBy: 'idModele', targetEntity: CommentaireModele::class)]
+    private Collection $commentaireModeles;
+
+    public function __construct()
+    {
+        $this->variantes = new ArrayCollection();
+        $this->creePars = new ArrayCollection();
+        $this->commentaireModeles = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -75,6 +93,96 @@ class Modele
     public function setDateAjout(\DateTimeInterface $dateAjout): self
     {
         $this->dateAjout = $dateAjout;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Variante>
+     */
+    public function getVariantes(): Collection
+    {
+        return $this->variantes;
+    }
+
+    public function addVariante(Variante $variante): self
+    {
+        if (!$this->variantes->contains($variante)) {
+            $this->variantes->add($variante);
+            $variante->setIdModele($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVariante(Variante $variante): self
+    {
+        if ($this->variantes->removeElement($variante)) {
+            // set the owning side to null (unless already changed)
+            if ($variante->getIdModele() === $this) {
+                $variante->setIdModele(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CreePar>
+     */
+    public function getCreePars(): Collection
+    {
+        return $this->creePars;
+    }
+
+    public function addCreePar(CreePar $creePar): self
+    {
+        if (!$this->creePars->contains($creePar)) {
+            $this->creePars->add($creePar);
+            $creePar->setIdModele($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCreePar(CreePar $creePar): self
+    {
+        if ($this->creePars->removeElement($creePar)) {
+            // set the owning side to null (unless already changed)
+            if ($creePar->getIdModele() === $this) {
+                $creePar->setIdModele(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CommentaireModele>
+     */
+    public function getCommentaireModeles(): Collection
+    {
+        return $this->commentaireModeles;
+    }
+
+    public function addCommentaireModele(CommentaireModele $commentaireModele): self
+    {
+        if (!$this->commentaireModeles->contains($commentaireModele)) {
+            $this->commentaireModeles->add($commentaireModele);
+            $commentaireModele->setIdModele($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaireModele(CommentaireModele $commentaireModele): self
+    {
+        if ($this->commentaireModeles->removeElement($commentaireModele)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaireModele->getIdModele() === $this) {
+                $commentaireModele->setIdModele(null);
+            }
+        }
 
         return $this;
     }

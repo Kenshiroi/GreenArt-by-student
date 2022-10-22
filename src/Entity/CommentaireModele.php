@@ -10,12 +10,14 @@ use Doctrine\ORM\Mapping as ORM;
 class CommentaireModele
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $idModele = null;
-
-    #[ORM\Column]
-    private ?int $idUser = null;
+    #[ORM\ManyToOne(inversedBy: 'commentaireModeles')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Modele $idModele = null;
+    
+    #[ORM\Id]
+    #[ORM\ManyToOne(inversedBy: 'commentaireModeles')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Utilisateur $idUser = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $textCommentaire = null;
@@ -23,21 +25,14 @@ class CommentaireModele
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateCommentaire = null;
 
-    public function getIdModele(): ?int
+    public function getIdModele(): ?Modele
     {
         return $this->idModele;
     }
 
-    public function getIdUser(): ?int
+    public function getIdUser(): ?Utilisateur
     {
         return $this->idUser;
-    }
-
-    public function setIdUser(int $idUser): self
-    {
-        $this->idUser = $idUser;
-
-        return $this;
     }
 
     public function getTextCommentaire(): ?string

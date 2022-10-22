@@ -1,11 +1,10 @@
 {
   "ExpandedNodes": [
     "",
+    "\\migrations",
     "\\src",
     "\\src\\Controller",
-    "\\src\\Entity",
-    "\\src\\Repository"
+    "\\src\\Entity"
   ],
-  "SelectedNode": "\\src",
   "PreviewInSolutionExplorer": false
 }

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modele index{% endblock %}
+
+{% block body %}
+    <h1>Modele index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>NomModele</th>
+                <th>ImageModele</th>
+                <th>DescriptionModele</th>
+                <th>DateAjout</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for modele in modeles %}
+            <tr>
+                <td>{{ modele.id }}</td>
+                <td>{{ modele.nomModele }}</td>
+                <td>{{ modele.imageModele }}</td>
+                <td>{{ modele.descriptionModele }}</td>
+                <td>{{ modele.dateAjout ? modele.dateAjout|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_modele_show', {'id': modele.id}) }}">show</a>
+                    <a href="{{ path('app_modele_edit', {'id': modele.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_modele_new') }}">Create new</a>
+{% endblock %}

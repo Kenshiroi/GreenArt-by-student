@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Createur{% endblock %}
+
+{% block body %}
+    <h1>Createur</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ createur.id }}</td>
+            </tr>
+            <tr>
+                <th>NomCreateur</th>
+                <td>{{ createur.nomCreateur }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_createur_index') }}">back to list</a>
+
+    <a href="{{ path('app_createur_edit', {'id': createur.id}) }}">edit</a>
+
+    {{ include('createur/_delete_form.html.twig') }}
+{% endblock %}
