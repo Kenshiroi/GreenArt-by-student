@@ -3,10 +3,36 @@
 {% block title %}Model{% endblock %}
 
 {% block body %}
-    <h1>Model {{ model }}</h1>
-    {% if variante is defined %}
-        <h2> Variante {{ variante }} </h2>
-    {% else %}
-        <h2> Pas de variante sélectionnée </h2>
-    {% endif %}
+    <h1>Model : {{ model.nomModele }}</h1>
+    
+    <table class="table">
+    <thead>
+            <tr>
+                <th>Id</th>
+                <th>NomVariante</th>
+                <th>PrixVariante</th>
+                <th>PrixPromoVariante</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for variante in variantes %}
+            <tr>
+                <td>{{ variante.id }}</td>
+                <td>{{ variante.nomVariante }}</td>
+                <td>{{ variante.prixVariante }}</td>
+                <td>{{ variante.prixPromoVariante }}</td>
+                <td>
+                    <a href="{{ path('app_model_pay', {'id': model.id, 'idVariante': variante.id}) }}">pay</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+
+
 {% endblock %}

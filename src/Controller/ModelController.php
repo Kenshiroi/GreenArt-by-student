@@ -15,18 +15,18 @@ use App\Repository\ModeleRepository;
 class ModelController extends AbstractController
 {
     #[Route('/{id}', name: 'app_model_any', methods: ['GET'])]
-    public function model_any(ModeleRepository $modelRepository, String $id): Response
+    public function model_any(Modele $model, String $id): Response
     {
         return $this->render('model/model.html.twig', [
-            'model' => $id,
-            'variantes' => 'Ensemble des variantes du modèle',
+            'model' => $model,
+            'variantes' => $model->getVariantes(),
         ]);
     }
 
-    #[Route('/{id}/{idVariante}', name: 'app_model_anyvariante', methods: ['GET'])]
-    public function model_anyvariante(ModeleRepository $modelRepository, String $id, String $idVariante): Response
+    #[Route('/{id}/{idVariante}', name: 'app_model_pay', methods: ['GET'])]
+    public function model_anyvariante(String $id, String $idVariante): Response
     {
-        return $this->render('model/model.html.twig', [
+        return $this->render('model/model_pay.html.twig', [
             'model' => $id,
             'variante' => $idVariante,
             'variantes' => 'Ensemble des variantes du modèle',
