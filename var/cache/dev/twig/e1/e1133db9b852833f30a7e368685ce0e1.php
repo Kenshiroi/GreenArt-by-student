@@ -447,6 +447,6 @@ class __TwigTemplate_96e5a358db8c0a5663d5f16528b5c29c extends Template
     });
 })();
 </script>
-", "@WebProfiler/Profiler/settings.html.twig", "F:\\Xampp\\htdocs\\GreenArt-by-student\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Profiler\\settings.html.twig");
+", "@WebProfiler/Profiler/settings.html.twig", "F:\\Xampp\\htdocs\\GreenArt\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Profiler\\settings.html.twig");
     }
 }

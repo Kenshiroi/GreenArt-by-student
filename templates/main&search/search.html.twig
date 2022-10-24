@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recherche{% endblock %}
+
+{% block body %}
+    <h1>Recherche</h1>
+    <h2>{{ searched }}</h2>
+
+    <h2>Modeles</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>NomModele</th>
+                <th>ImageModele</th>
+                <th>DescriptionModele</th>
+                <th>DateAjout</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for modele in modeles %}
+            <tr>
+                <td>{{ modele.id }}</td>
+                <td>{{ modele.nomModele }}</td>
+                <td>{{ modele.imageModele }}</td>
+                <td>{{ modele.descriptionModele }}</td>
+                <td>{{ modele.dateAjout ? modele.dateAjout|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

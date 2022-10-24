@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Modele;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * @extends ServiceEntityRepository<Modele>
@@ -39,20 +40,20 @@ class ModeleRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Modele[] Returns an array of Modele objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('m')
-//            ->andWhere('m.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('m.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+/**
+ * @return Modele[] Returns an array of Modele objects
+ */
+public function findByLike(array $search): array
+{
+    $qb = $this->createQueryBuilder('m');
+    foreach ($search as $c => $v) {
+        $qb ->andWhere("m.$c LIKE :value")
+            ->setParameter('value', "$v%");
+    }
+    return $qb->setMaxResults(25)
+        ->getQuery()
+        ->getResult();
+}
 
 //    public function findOneBySomeField($value): ?Modele
 //    {

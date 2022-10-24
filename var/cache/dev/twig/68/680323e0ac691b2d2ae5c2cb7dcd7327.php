@@ -97,6 +97,6 @@ class __TwigTemplate_0b3c7ba1c5ffefc718af7e20d08b8f2c extends Template
         </div>
     </div>
 </div>
-", "@WebProfiler/Profiler/header.html.twig", "F:\\Xampp\\htdocs\\GreenArt-by-student\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Profiler\\header.html.twig");
+", "@WebProfiler/Profiler/header.html.twig", "F:\\Xampp\\htdocs\\GreenArt\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Profiler\\header.html.twig");
     }
 }

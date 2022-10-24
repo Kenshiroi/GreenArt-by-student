@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20221022195602 extends AbstractMigration
+final class Version20221024112150 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -24,7 +24,7 @@ final class Version20221022195602 extends AbstractMigration
         $this->addSql('CREATE TABLE commentaire_modele (id_modele_id INT NOT NULL, id_user_id INT NOT NULL, text_commentaire LONGTEXT NOT NULL, date_commentaire DATETIME NOT NULL, INDEX IDX_48655DF2C210B2D (id_modele_id), INDEX IDX_48655DF79F37AE5 (id_user_id), PRIMARY KEY(id_modele_id, id_user_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE createur (id INT AUTO_INCREMENT NOT NULL, nom_createur VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE cree_par (id_modele_id INT NOT NULL, id_createur_id INT NOT NULL, INDEX IDX_4C28E2B52C210B2D (id_modele_id), INDEX IDX_4C28E2B56BB0CC12 (id_createur_id), PRIMARY KEY(id_modele_id, id_createur_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE modele (id INT AUTO_INCREMENT NOT NULL, nom_modele VARCHAR(255) NOT NULL, image_modele LONGTEXT NOT NULL, description_modele LONGTEXT NOT NULL, date_ajout DATETIME NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE modele (id INT AUTO_INCREMENT NOT NULL, nom_modele VARCHAR(255) NOT NULL, image_modele LONGTEXT NOT NULL, description_modele LONGTEXT NOT NULL, date_ajout DATETIME NOT NULL, fichier_modele LONGTEXT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE sous_commande (id_variante_id INT NOT NULL, id_commande_id INT NOT NULL, quantite INT NOT NULL, INDEX IDX_66A49228CC43AF41 (id_variante_id), INDEX IDX_66A492289AF8E3A3 (id_commande_id), PRIMARY KEY(id_variante_id, id_commande_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE utilisateur (id INT AUTO_INCREMENT NOT NULL, pseudo_user VARCHAR(255) NOT NULL, image_user LONGTEXT DEFAULT NULL, password_user LONGTEXT NOT NULL, mail_user VARCHAR(255) NOT NULL, confirm_user TINYINT(1) NOT NULL, right_user INT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE variante (id INT AUTO_INCREMENT NOT NULL, id_modele_id INT NOT NULL, nom_variante VARCHAR(255) NOT NULL, prix_variante DOUBLE PRECISION NOT NULL, prix_promo_variante DOUBLE PRECISION DEFAULT NULL, cara_variante LONGTEXT NOT NULL, INDEX IDX_474CE6B02C210B2D (id_modele_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
