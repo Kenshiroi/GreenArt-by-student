@@ -34,6 +34,9 @@ class Utilisateur
     #[ORM\Column]
     private ?int $rightUser = null;
 
+    #[ORM\Column]
+    private ?bool $banUser = null;
+
     #[ORM\OneToMany(mappedBy: 'idUser', targetEntity: Commande::class)]
     private Collection $commandes;
 
@@ -119,6 +122,18 @@ class Utilisateur
     public function setRightUser(int $rightUser): self
     {
         $this->rightUser = $rightUser;
+
+        return $this;
+    }
+
+    public function isBanUser(): ?bool
+    {
+        return $this->banUser;
+    }
+
+    public function setBanUser(bool $banUser): self
+    {
+        $this->banUser = $banUser;
 
         return $this;
     }

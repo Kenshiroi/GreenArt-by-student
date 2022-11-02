@@ -26,3 +26,5 @@ class ModeleType extends AbstractType
         ]);
     }
 }
+
+?>

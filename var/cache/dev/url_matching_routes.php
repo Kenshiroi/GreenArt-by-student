@@ -14,7 +14,7 @@ return [
         '/_profiler/phpinfo' => [[['_route' => '_profiler_phpinfo', '_controller' => 'web_profiler.controller.profiler::phpinfoAction'], null, null, null, false, false, null]],
         '/_profiler/xdebug' => [[['_route' => '_profiler_xdebug', '_controller' => 'web_profiler.controller.profiler::xdebugAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
-        '/admin' => [[['_route' => 'app_admin_main', '_controller' => 'App\\Controller\\AdminController::admin_main'], null, ['GET' => 0], null, false, false, null]],
+        '/admin/addModel' => [[['_route' => 'app_admin_main', '_controller' => 'App\\Controller\\AdminController::admin_main'], null, ['GET' => 0], null, false, false, null]],
         '/commande' => [[['_route' => 'app_commande_index', '_controller' => 'App\\Controller\\CommandeController::index'], null, ['GET' => 0], null, true, false, null]],
         '/commande/new' => [[['_route' => 'app_commande_new', '_controller' => 'App\\Controller\\CommandeController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/commentaire/modele' => [[['_route' => 'app_commentaire_modele_index', '_controller' => 'App\\Controller\\CommentaireModeleController::index'], null, ['GET' => 0], null, true, false, null]],
