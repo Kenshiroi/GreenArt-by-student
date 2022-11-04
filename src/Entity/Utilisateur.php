@@ -3,183 +3,127 @@
 namespace App\Entity;
 
 use App\Repository\UtilisateurRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
-class Utilisateur
+class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $pseudoUser = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $imageUser = null;
-
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $passwordUser = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $mailUser = null;
+    #[ORM\Column(length: 180, unique: true)]
+    private ?string $email = null;
 
     #[ORM\Column]
-    private ?bool $confirmUser = null;
+    private array $roles = [];
+
+    /**
+     * @var string The hashed password
+     */
+    #[ORM\Column]
+    private ?string $password = null;
 
     #[ORM\Column]
-    private ?int $rightUser = null;
+    private ?string $pseudo = null;
 
-    #[ORM\OneToMany(mappedBy: 'idUser', targetEntity: Commande::class)]
-    private Collection $commandes;
-
-    #[ORM\OneToMany(mappedBy: 'idUser', targetEntity: CommentaireModele::class)]
-    private Collection $commentaireModeles;
-
-    public function __construct()
-    {
-        $this->commandes = new ArrayCollection();
-        $this->commentaireModeles = new ArrayCollection();
-    }
+    #[ORM\Column]
+    private ?string $image = "imagebase";
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getPseudoUser(): ?string
+    public function getEmail(): ?string
     {
-        return $this->pseudoUser;
+        return $this->email;
     }
 
-    public function setPseudoUser(string $pseudoUser): self
+    public function setEmail(string $email): self
     {
-        $this->pseudoUser = $pseudoUser;
-
-        return $this;
-    }
-
-    public function getImageUser(): ?string
-    {
-        return $this->imageUser;
-    }
-
-    public function setImageUser(?string $imageUser): self
-    {
-        $this->imageUser = $imageUser;
-
-        return $this;
-    }
-
-    public function getPasswordUser(): ?string
-    {
-        return $this->passwordUser;
-    }
-
-    public function setPasswordUser(string $passwordUser): self
-    {
-        $this->passwordUser = $passwordUser;
-
-        return $this;
-    }
-
-    public function getMailUser(): ?string
-    {
-        return $this->mailUser;
-    }
-
-    public function setMailUser(string $mailUser): self
-    {
-        $this->mailUser = $mailUser;
-
-        return $this;
-    }
-
-    public function isConfirmUser(): ?bool
-    {
-        return $this->confirmUser;
-    }
-
-    public function setConfirmUser(bool $confirmUser): self
-    {
-        $this->confirmUser = $confirmUser;
-
-        return $this;
-    }
-
-    public function getRightUser(): ?int
-    {
-        return $this->rightUser;
-    }
-
-    public function setRightUser(int $rightUser): self
-    {
-        $this->rightUser = $rightUser;
+        $this->email = $email;
 
         return $this;
     }
 
     /**
-     * @return Collection<int, Commande>
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
      */
-    public function getCommandes(): Collection
+    public function getUserIdentifier(): string
     {
-        return $this->commandes;
+        return (string) $this->email;
     }
 
-    public function addCommande(Commande $commande): self
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        if (!$this->commandes->contains($commande)) {
-            $this->commandes->add($commande);
-            $commande->setIdUser($this);
-        }
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
 
-        return $this;
+        return array_unique($roles);
     }
 
-    public function removeCommande(Commande $commande): self
+    public function setRoles(array $roles): self
     {
-        if ($this->commandes->removeElement($commande)) {
-            // set the owning side to null (unless already changed)
-            if ($commande->getIdUser() === $this) {
-                $commande->setIdUser(null);
-            }
-        }
+        $this->roles = $roles;
 
         return $this;
     }
 
     /**
-     * @return Collection<int, CommentaireModele>
+     * @see PasswordAuthenticatedUserInterface
      */
-    public function getCommentaireModeles(): Collection
+    public function getPassword(): string
     {
-        return $this->commentaireModeles;
+        return $this->password;
     }
 
-    public function addCommentaireModele(CommentaireModele $commentaireModele): self
+    public function setPassword(string $password): self
     {
-        if (!$this->commentaireModeles->contains($commentaireModele)) {
-            $this->commentaireModeles->add($commentaireModele);
-            $commentaireModele->setIdUser($this);
-        }
+        $this->password = $password;
 
         return $this;
     }
 
-    public function removeCommentaireModele(CommentaireModele $commentaireModele): self
+    public function getPseudo(): string
     {
-        if ($this->commentaireModeles->removeElement($commentaireModele)) {
-            // set the owning side to null (unless already changed)
-            if ($commentaireModele->getIdUser() === $this) {
-                $commentaireModele->setIdUser(null);
-            }
-        }
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
 
         return $this;
+    }
+
+    public function getImage(): string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 }

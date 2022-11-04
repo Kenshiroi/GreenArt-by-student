@@ -53,22 +53,39 @@ class __TwigTemplate_2e28938bc97b201051005636635acfba extends Template
         $this->displayBlock('title', $context, $blocks);
         echo "</title>
         <link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>\">
-        ";
+\t\t\t";
         // line 8
-        echo "        ";
+        echo "\t\t\t";
         $this->displayBlock('stylesheets', $context, $blocks);
         // line 11
         echo "
-        ";
+\t\t\t";
         // line 12
         $this->displayBlock('javascripts', $context, $blocks);
         // line 15
-        echo "    </head>
+        echo "\t\t\t";
+        if (twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 15, $this->source); })()), "user", [], "any", false, false, false, 15)) {
+            // line 16
+            echo "\t\t\t<p>Utilisateur connecté : ";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 16, $this->source); })()), "user", [], "any", false, false, false, 16), "pseudo", [], "any", false, false, false, 16), "html", null, true);
+            echo "</p>
+\t\t\t<a href=\"";
+            // line 17
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_utilisateur_edit", ["id" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 17, $this->source); })()), "user", [], "any", false, false, false, 17), "id", [], "any", false, false, false, 17)]), "html", null, true);
+            echo "\">Edit profile</a>
+\t\t\t<a href=\"";
+            // line 18
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout", ["id" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 18, $this->source); })()), "user", [], "any", false, false, false, 18), "id", [], "any", false, false, false, 18)]), "html", null, true);
+            echo "\">Logout</a>
+\t\t\t";
+        }
+        // line 20
+        echo "\t\t</head>
     <body>
         ";
-        // line 17
+        // line 22
         $this->displayBlock('body', $context, $blocks);
-        // line 18
+        // line 23
         echo "    </body>
 </html>
 ";
@@ -110,10 +127,10 @@ class __TwigTemplate_2e28938bc97b201051005636635acfba extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
 
         // line 9
-        echo "            ";
+        echo "\t\t\t";
         echo twig_escape_filter($this->env, $this->env->getFunction('encore_entry_link_tags')->getCallable()("app"), "html", null, true);
         echo "
-        ";
+\t\t\t";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -133,10 +150,10 @@ class __TwigTemplate_2e28938bc97b201051005636635acfba extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
         // line 13
-        echo "            ";
+        echo "\t\t\t";
         echo twig_escape_filter($this->env, $this->env->getFunction('encore_entry_script_tags')->getCallable()("app"), "html", null, true);
         echo "
-        ";
+\t\t\t";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -145,7 +162,7 @@ class __TwigTemplate_2e28938bc97b201051005636635acfba extends Template
 
     }
 
-    // line 17
+    // line 22
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -168,9 +185,14 @@ class __TwigTemplate_2e28938bc97b201051005636635acfba extends Template
         return "base.html.twig";
     }
 
+    public function isTraitable()
+    {
+        return false;
+    }
+
     public function getDebugInfo()
     {
-        return array (  149 => 17,  136 => 13,  126 => 12,  113 => 9,  103 => 8,  84 => 5,  72 => 18,  70 => 17,  66 => 15,  64 => 12,  61 => 11,  58 => 8,  53 => 5,  47 => 1,);
+        return array (  166 => 22,  153 => 13,  143 => 12,  130 => 9,  120 => 8,  101 => 5,  89 => 23,  87 => 22,  83 => 20,  78 => 18,  74 => 17,  69 => 16,  66 => 15,  64 => 12,  61 => 11,  58 => 8,  53 => 5,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -181,19 +203,24 @@ class __TwigTemplate_2e28938bc97b201051005636635acfba extends Template
         <meta charset=\"UTF-8\">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>\">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+\t\t\t{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+\t\t\t{% block stylesheets %}
+\t\t\t{{ encore_entry_link_tags('app') }}
+\t\t\t{% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
+\t\t\t{% block javascripts %}
+\t\t\t{{ encore_entry_script_tags('app') }}
+\t\t\t{% endblock %}
+\t\t\t{% if app.user %}
+\t\t\t<p>Utilisateur connecté : {{ app.user.pseudo }}</p>
+\t\t\t<a href=\"{{ path('app_utilisateur_edit', {'id': app.user.id}) }}\">Edit profile</a>
+\t\t\t<a href=\"{{ path('app_logout', {'id': app.user.id}) }}\">Logout</a>
+\t\t\t{% endif %}
+\t\t</head>
     <body>
         {% block body %}{% endblock %}
     </body>
 </html>
-", "base.html.twig", "F:\\Xampp\\htdocs\\GreenArt-by-student\\templates\\base.html.twig");
+", "base.html.twig", "C:\\xampp\\htdocs\\projetl3\\templates\\base.html.twig");
     }
 }
