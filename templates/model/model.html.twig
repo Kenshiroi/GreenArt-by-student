@@ -12,7 +12,9 @@
                 <th>NomVariante</th>
                 <th>PrixVariante</th>
                 <th>PrixPromoVariante</th>
-                <th>Action</th>
+                <th>Nombre</th>
+                <th>Operateurs</th>*
+                <th>PrixTotal</th>
             </tr>
         </thead>
         <tbody>
@@ -22,8 +24,15 @@
                 <td>{{ variante.nomVariante }}</td>
                 <td>{{ variante.prixVariante }}</td>
                 <td>{{ variante.prixPromoVariante }}</td>
+                <td>{{ nombres[variante.id-1][1] }}</td>
                 <td>
-                    <a href="{{ path('app_model_pay', {'id': model.id, 'idVariante': variante.id}) }}">pay</a>
+                    <a href="{{ path('app_model_-', { 'id' : model.id  , 'nombres' : nombres , 'idNombre' : variante.id    }) }}">-</a>
+                    <a> ..... </a>
+                    <a href="{{ path('app_model_+', { 'id' : model.id  , 'nombres' : nombres , 'idNombre' : variante.id    }) }}">+</a>
+                </td>
+                <td>{{ nombres[variante.id-1][1] * variante.prixPromoVariante }}</td>
+                <td>
+                    <a href="{{ path('app_main', { 'id' : model.id  , 'nombres' : nombres , 'idNombre' : variante.id    }) }}">mettre 1 au panier</a>
                 </td>
             </tr>
         {% else %}
@@ -33,6 +42,6 @@
         {% endfor %}
         </tbody>
         </table>
-
+        <a href="{{ path('app_model_panier_add', { 'id' : model.id  , 'nombres' : nombres}) }}">mettre le total au panier</a>
 
 {% endblock %}
