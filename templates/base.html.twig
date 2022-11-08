@@ -13,9 +13,12 @@
 			{{ encore_entry_script_tags('app') }}
 			{% endblock %}
 			{% if app.user %}
-			<p>Utilisateur connecté : {{ app.user.pseudo }}</p>
-			<a href="{{ path('app_utilisateur_edit', {'id': app.user.id}) }}">Edit profile</a>
+			<p>Utilisateur connecté : {{ app.user.pseudo }}{% if "ROLE_ADMIN" in app.user.roles %} (ADMIN){% endif %}</p>
+			<a href="{{ path('app_utilisateur_show', {'id': app.user.id}) }}">Profile</a>
 			<a href="{{ path('app_logout', {'id': app.user.id}) }}">Logout</a>
+			{% else %}
+			<a href="{{ path('app_login') }}">Se connecter</a>
+			<a href="{{ path('app_register') }}">S'inscrire</a>
 			{% endif %}
 		</head>
     <body>

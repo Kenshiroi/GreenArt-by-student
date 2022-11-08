@@ -3,6 +3,10 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
+{% if app.user%}
+<p>Vous etes deja inscrit</p><br/>
+<a href="/">Revenir a l'acceuil</a>
+{% else %}
     {% for flash_error in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
@@ -19,4 +23,5 @@
 
         <button type="submit" class="btn">Register</button>
     {{ form_end(registrationForm) }}
+{% endif %}
 {% endblock %}

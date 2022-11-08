@@ -3,11 +3,15 @@
 {% block title %}Edit Utilisateur{% endblock %}
 
 {% block body %}
+{% if (app.user.id == utilisateur.id) or "ROLE_ADMIN" in app.user.roles %}
     <h1>Edit Utilisateur</h1>
 
     {{ include('utilisateur/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_utilisateur_index') }}">back to list</a>
+    <a href="{{ path('app_forgot_password_request') }}">change password</a>
+    <a href="{{ path('app_main') }}">Accueil</a>
 
     {{ include('utilisateur/_delete_form.html.twig') }}
+{% else %}
+<p>Vous ne pouvez pas modifier ce profil</p>
+{% endif %}
 {% endblock %}
