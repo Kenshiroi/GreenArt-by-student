@@ -52,7 +52,12 @@ class ModelController extends AbstractController
         $nombres = $request->query->all("nombres"); //récupérer la mémoire des +- 
         $idNombre = $request->query->get("idNombre"); //récupérer la ou est fait la modif
 
-        $nombres[$idNombre-1][1] = $nombres[$idNombre-1][1] +1; //faire la modif
+        for ($i=0; $i<count($nombres); $i++){
+            if ($nombres[$i][0] == $idNombre)
+            {
+                $nombres[$i][1] = $nombres[$i][1] +1; //faire la modif
+            }
+        }
 
         //lancement de la page
         return $this->render('model/model.html.twig', [
@@ -70,8 +75,11 @@ class ModelController extends AbstractController
         $nombres = $request->query->all("nombres"); //récupérer la mémoire des +- 
         $idNombre = $request->query->get("idNombre"); //récupérer la ou est fait la modif
 
-        if ($nombres[$idNombre-1][1] > 0){
-            $nombres[$idNombre-1][1] = $nombres[$idNombre-1][1] -1; //faire la modif
+        for ($i=0; $i<count($nombres); $i++){
+            if ($nombres[$i][0] == $idNombre || $nombres[$i][1] > 0)
+            {
+                $nombres[$i][1] = $nombres[$i][1] -1; //faire la modif
+            }
         }
 
         //lancement de la page
@@ -82,43 +90,5 @@ class ModelController extends AbstractController
         ]);
         //
     }
-}
-
-#[Route('/panier')]
-class PanierController extends AbstractController
-{
-    #[Route('/add', name: 'app_model_panier_add', methods: ['GET'])]
-    public function model_panier_add(ModeleRepository $modeles, Request $request): Response
-    {
-        /*
-        $id = $request->query->all("id"); //récupérer l'id du model
-        $model = $modeles->find($id); //récupérer le model de la page
-        $nombres = $request->query->all("nombres"); //récupérer la mémoire des +- (afin de l'upload dans les cookies)
-
-        if (isset($_COOKIE['panier'])) 
-        {
-            $panier = $_COOKIE["panier"];
-            $memoire = [$id, ...$nombres];
-            $panier = [...$panier, $memoire];
-            setcookie('panier', $panier);
-        }
-        else 
-        {
-            $memoire = [$id, ...$nombres];
-            $panier = [$memoire];
-            setcookie('panier', $panier);
-        }
-        */
-        return $this->render('model/model_panier.html.twig', [
-            //'panier' => $_COOKIE["panier"],
-            //'modeles' => $modes->findAll(),
-        ]);
-    }
-}
-
-
-
-
-
-   
+} 
  ?>

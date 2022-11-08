@@ -383,6 +383,13 @@
         <argument type="service" id=".service_locator.jIxfAsi.App\Controller\ModelController"/>
       </call>
     </service>
+    <service id="App\Controller\ModelPanierController" class="App\Controller\ModelPanierController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.jIxfAsi.App\Controller\ModelPanierController"/>
+      </call>
+    </service>
     <service id="App\Controller\ModeleController" class="App\Controller\ModeleController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -5994,6 +6001,9 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ModelController" class="App\Controller\ModelController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ModelController" class="App\Controller\ModelController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\ModelController" class="App\Controller\ModelController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ModelPanierController" class="App\Controller\ModelPanierController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ModelPanierController" class="App\Controller\ModelPanierController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\ModelPanierController" class="App\Controller\ModelPanierController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ModeleController" class="App\Controller\ModeleController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ModeleController" class="App\Controller\ModeleController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\ModeleController" class="App\Controller\ModeleController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -6546,7 +6556,7 @@
         <argument key="varianteRepository" type="service_closure" id="App\Repository\VarianteRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.qLKtVKs" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.ivyXoax" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\AdminController::admin_main" type="service_closure" id=".service_locator.J_3sFrY"/>
@@ -6576,6 +6586,8 @@
         <argument key="App\Controller\ModelController::model_any" type="service_closure" id=".service_locator.PqTd1Dd"/>
         <argument key="App\Controller\ModelController::model_moins" type="service_closure" id=".service_locator.PqTd1Dd"/>
         <argument key="App\Controller\ModelController::model_plus" type="service_closure" id=".service_locator.PqTd1Dd"/>
+        <argument key="App\Controller\ModelPanierController::model_panier" type="service_closure" id=".service_locator.PqTd1Dd"/>
+        <argument key="App\Controller\ModelPanierController::model_panier_add" type="service_closure" id=".service_locator.PqTd1Dd"/>
         <argument key="App\Controller\ModeleController::delete" type="service_closure" id=".service_locator.33PDuui"/>
         <argument key="App\Controller\ModeleController::edit" type="service_closure" id=".service_locator.33PDuui"/>
         <argument key="App\Controller\ModeleController::index" type="service_closure" id=".service_locator.roJc7VC"/>
@@ -6633,6 +6645,8 @@
         <argument key="App\Controller\ModelController:model_any" type="service_closure" id=".service_locator.PqTd1Dd"/>
         <argument key="App\Controller\ModelController:model_moins" type="service_closure" id=".service_locator.PqTd1Dd"/>
         <argument key="App\Controller\ModelController:model_plus" type="service_closure" id=".service_locator.PqTd1Dd"/>
+        <argument key="App\Controller\ModelPanierController:model_panier" type="service_closure" id=".service_locator.PqTd1Dd"/>
+        <argument key="App\Controller\ModelPanierController:model_panier_add" type="service_closure" id=".service_locator.PqTd1Dd"/>
         <argument key="App\Controller\ModeleController:delete" type="service_closure" id=".service_locator.33PDuui"/>
         <argument key="App\Controller\ModeleController:edit" type="service_closure" id=".service_locator.33PDuui"/>
         <argument key="App\Controller\ModeleController:index" type="service_closure" id=".service_locator.roJc7VC"/>
@@ -7238,6 +7252,12 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.jIxfAsi" method="withContext"/>
     </service>
+    <service id=".service_locator.jIxfAsi.App\Controller\ModelPanierController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ModelPanierController"/>
+      <argument>App\Controller\ModelPanierController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.jIxfAsi" method="withContext"/>
+    </service>
     <service id=".service_locator.jIxfAsi.App\Controller\ModeleController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\ModeleController"/>
       <argument>App\Controller\ModeleController</argument>
@@ -7526,12 +7546,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.qLKtVKs"/>
+      <argument type="service" id=".service_locator.ivyXoax"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.qLKtVKs"/>
+      <argument type="service" id=".service_locator.ivyXoax"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -8489,7 +8509,7 @@
     <service id="sensio_framework_extra.security.expression_language" alias="sensio_framework_extra.security.expression_language.default"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.qLKtVKs"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.ivyXoax"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -8510,7 +8530,7 @@
     <service id=".service_locator.80edgLI" alias="messenger.receiver_locator"/>
     <service id=".service_locator.h8Jkkd2" alias="messenger.retry_strategy_locator"/>
     <service id=".service_locator.0GV1BZZ" alias=".service_locator.gSv9zYw"/>
-    <service id=".service_locator.OxnGJ5y" alias=".service_locator.qLKtVKs"/>
+    <service id=".service_locator.jT.dXFs" alias=".service_locator.ivyXoax"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
     <service id=".service_locator.d1Z3lrN" alias=".service_locator.Gxj0OTV"/>
     <service id=".service_locator.XW18Svm" alias=".service_locator.TcKhdzh"/>

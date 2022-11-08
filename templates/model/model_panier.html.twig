@@ -3,14 +3,39 @@
 {% block title %}Model{% endblock %}
 
 {% block body %}
+	<h1>Panier</h1>
 
+    {% if reload == 1 %}
+        <meta http-equiv="refresh" content="1; URL=http://127.0.0.1:8000/panier/">
+    {% endif %}
 
+	<table class="table">
+    <thead>
+            <tr>
+                <th>IdModele</th>
+                <th>IdVariante</th>
+                <th>NomModele</th>
+                <th>NomVariante</th>
+                <th>PrixUnitaire</th>
+                <th>Nombre</th>
+                <th>PrixTotal</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for articles in panier %}
+            {% for i in 1..articles|length-1 %}
+                <tr>
+                    <td>{{ articles[0] }}</td>
+                    <td>{{ articles[i][0] }}</td>
+                    <td>{{ articles[i][1] }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">no records found</td>
+                </tr>
+            {% endfor %}
+        {% endfor %}
+        </tbody>
+        </table>
 
-
-
-
-
-
-
-</tbody>
 {% endblock %}

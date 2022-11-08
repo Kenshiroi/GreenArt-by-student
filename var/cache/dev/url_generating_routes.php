@@ -43,6 +43,8 @@ return [
     'app_model_any' => [['id'], ['_controller' => 'App\\Controller\\ModelController::model_any'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/model']], [], [], []],
     'app_model_+' => [['id'], ['_controller' => 'App\\Controller\\ModelController::model_plus'], [], [['text', '/+'], ['variable', '/', '[^/]++', 'id', true], ['text', '/model']], [], [], []],
     'app_model_-' => [['id'], ['_controller' => 'App\\Controller\\ModelController::model_moins'], [], [['text', '/-'], ['variable', '/', '[^/]++', 'id', true], ['text', '/model']], [], [], []],
+    'app_model_panier_add' => [[], ['_controller' => 'App\\Controller\\ModelPanierController::model_panier_add'], [], [['text', '/panier/add']], [], [], []],
+    'app_model_panier' => [[], ['_controller' => 'App\\Controller\\ModelPanierController::model_panier'], [], [['text', '/panier/']], [], [], []],
     'app_modele_index' => [[], ['_controller' => 'App\\Controller\\ModeleController::index'], [], [['text', '/modele/']], [], [], []],
     'app_modele_new' => [[], ['_controller' => 'App\\Controller\\ModeleController::new'], [], [['text', '/modele/new']], [], [], []],
     'app_modele_show' => [['id'], ['_controller' => 'App\\Controller\\ModeleController::show'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/modele']], [], [], []],
