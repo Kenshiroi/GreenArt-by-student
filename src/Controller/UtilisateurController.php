@@ -72,7 +72,7 @@ class UtilisateurController extends AbstractController
             }   
             $utilisateurRepository->save($utilisateur, true);
 
-            return $this->redirectToRoute('app_utilisateur_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_main', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('utilisateur/edit.html.twig', [
@@ -88,6 +88,6 @@ class UtilisateurController extends AbstractController
             $utilisateurRepository->remove($utilisateur, true);
         }
 
-        return $this->redirectToRoute('app_utilisateur_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_main', [], Response::HTTP_SEE_OTHER);
     }
 }

@@ -66,39 +66,47 @@ class __TwigTemplate_2e28938bc97b201051005636635acfba extends Template
         echo "\t\t\t";
         if (twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 15, $this->source); })()), "user", [], "any", false, false, false, 15)) {
             // line 16
-            echo "\t\t\t<p>Utilisateur connecté : ";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 16, $this->source); })()), "user", [], "any", false, false, false, 16), "pseudo", [], "any", false, false, false, 16), "html", null, true);
-            if (twig_in_filter("ROLE_ADMIN", twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 16, $this->source); })()), "user", [], "any", false, false, false, 16), "roles", [], "any", false, false, false, 16))) {
+            echo "\t\t\t<img src=\"";
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("images/" . twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 16, $this->source); })()), "user", [], "any", false, false, false, 16), "image", [], "any", false, false, false, 16))), "html", null, true);
+            echo "\" width=\"50\" height=\"50\"/>
+\t\t\t<p>Utilisateur connecté : ";
+            // line 17
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 17, $this->source); })()), "user", [], "any", false, false, false, 17), "pseudo", [], "any", false, false, false, 17), "html", null, true);
+            if (twig_in_filter("ROLE_ADMIN", twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 17, $this->source); })()), "user", [], "any", false, false, false, 17), "roles", [], "any", false, false, false, 17))) {
                 echo " (ADMIN)";
+            } else {
+                if (twig_in_filter("ROLE_CREATOR", twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 17, $this->source); })()), "user", [], "any", false, false, false, 17), "roles", [], "any", false, false, false, 17))) {
+                    echo " (CREATEUR)";
+                }
             }
             echo "</p>
 \t\t\t<a href=\"";
-            // line 17
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_utilisateur_show", ["id" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 17, $this->source); })()), "user", [], "any", false, false, false, 17), "id", [], "any", false, false, false, 17)]), "html", null, true);
+            // line 18
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_utilisateur_show", ["id" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 18, $this->source); })()), "user", [], "any", false, false, false, 18), "id", [], "any", false, false, false, 18)]), "html", null, true);
             echo "\">Profile</a>
 \t\t\t<a href=\"";
-            // line 18
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout", ["id" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 18, $this->source); })()), "user", [], "any", false, false, false, 18), "id", [], "any", false, false, false, 18)]), "html", null, true);
+            // line 19
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout", ["id" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 19, $this->source); })()), "user", [], "any", false, false, false, 19), "id", [], "any", false, false, false, 19)]), "html", null, true);
             echo "\">Logout</a>
 \t\t\t";
         } else {
-            // line 20
+            // line 21
             echo "\t\t\t<a href=\"";
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
             echo "\">Se connecter</a>
 \t\t\t<a href=\"";
-            // line 21
+            // line 22
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_register");
             echo "\">S'inscrire</a>
 \t\t\t";
         }
-        // line 23
+        // line 24
         echo "\t\t</head>
     <body>
         ";
-        // line 25
-        $this->displayBlock('body', $context, $blocks);
         // line 26
+        $this->displayBlock('body', $context, $blocks);
+        // line 27
         echo "    </body>
 </html>
 ";
@@ -175,7 +183,7 @@ class __TwigTemplate_2e28938bc97b201051005636635acfba extends Template
 
     }
 
-    // line 25
+    // line 26
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -205,7 +213,7 @@ class __TwigTemplate_2e28938bc97b201051005636635acfba extends Template
 
     public function getDebugInfo()
     {
-        return array (  179 => 25,  166 => 13,  156 => 12,  143 => 9,  133 => 8,  114 => 5,  102 => 26,  100 => 25,  96 => 23,  91 => 21,  86 => 20,  81 => 18,  77 => 17,  69 => 16,  66 => 15,  64 => 12,  61 => 11,  58 => 8,  53 => 5,  47 => 1,);
+        return array (  187 => 26,  174 => 13,  164 => 12,  151 => 9,  141 => 8,  122 => 5,  110 => 27,  108 => 26,  104 => 24,  99 => 22,  94 => 21,  89 => 19,  85 => 18,  74 => 17,  69 => 16,  66 => 15,  64 => 12,  61 => 11,  58 => 8,  53 => 5,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -225,7 +233,8 @@ class __TwigTemplate_2e28938bc97b201051005636635acfba extends Template
 \t\t\t{{ encore_entry_script_tags('app') }}
 \t\t\t{% endblock %}
 \t\t\t{% if app.user %}
-\t\t\t<p>Utilisateur connecté : {{ app.user.pseudo }}{% if \"ROLE_ADMIN\" in app.user.roles %} (ADMIN){% endif %}</p>
+\t\t\t<img src=\"{{ asset('images/' ~ app.user.image)}}\" width=\"50\" height=\"50\"/>
+\t\t\t<p>Utilisateur connecté : {{ app.user.pseudo }}{% if \"ROLE_ADMIN\" in app.user.roles %} (ADMIN){%else%}{% if \"ROLE_CREATOR\" in app.user.roles %} (CREATEUR){% endif %}{% endif %}</p>
 \t\t\t<a href=\"{{ path('app_utilisateur_show', {'id': app.user.id}) }}\">Profile</a>
 \t\t\t<a href=\"{{ path('app_logout', {'id': app.user.id}) }}\">Logout</a>
 \t\t\t{% else %}

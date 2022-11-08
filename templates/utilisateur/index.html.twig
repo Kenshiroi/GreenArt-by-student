@@ -23,7 +23,7 @@
                 <td>{{ utilisateur.id }}</td>
                 <td>{{ utilisateur.email }}</td>
                 <td>{{ utilisateur.pseudo }}</td>
-                <td>{{ utilisateur.image }}</td>
+                <td><img src="{{ asset('images/' ~ utilisateur.image)}}" width="50" height="50"/></td>
                 <td>{{ utilisateur.roles ? utilisateur.roles|json_encode : '' }}</td>
                 <td>{{ utilisateur.password }}</td>
                 <td>

@@ -31,7 +31,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $pseudo = null;
 
     #[ORM\Column]
-    private ?string $image = "imagebase";
+    private ?string $image = "imagebase.png";
 
     public function getId(): ?int
     {
