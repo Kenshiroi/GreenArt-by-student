@@ -180,6 +180,7 @@ class ModelPanierController extends AbstractController
     #[Route('/commande', name: 'app_model_commande', methods: ['GET'])]
     public function model_commande(ModeleRepository $modeles): Response
     {
+        setcookie('panier', null);
         return $this->render('model/model_commander.html.twig', [
         ]);
     }
