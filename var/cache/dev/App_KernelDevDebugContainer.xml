@@ -371,6 +371,13 @@
         <argument type="service" id=".service_locator.jIxfAsi.App\Controller\CommentaireModeleController"/>
       </call>
     </service>
+    <service id="App\Controller\ContactController" class="App\Controller\ContactController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.jIxfAsi.App\Controller\ContactController"/>
+      </call>
+    </service>
     <service id="App\Controller\CreateurController" class="App\Controller\CreateurController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -459,6 +466,9 @@
     <service id="App\Form\CommentaireModeleType" class="App\Form\CommentaireModeleType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
+    <service id="App\Form\ContactType" class="App\Form\ContactType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id="App\Form\CreateurType" class="App\Form\CreateurType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
@@ -488,6 +498,10 @@
       <argument type="service" id="doctrine"/>
     </service>
     <service id="App\Repository\CommentaireModeleRepository" class="App\Repository\CommentaireModeleRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\ContactRepository" class="App\Repository\ContactRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
@@ -1313,6 +1327,7 @@
         <argument>App\Form\ChangePasswordFormType</argument>
         <argument>App\Form\CommandeType</argument>
         <argument>App\Form\CommentaireModeleType</argument>
+        <argument>App\Form\ContactType</argument>
         <argument>App\Form\CreateurType</argument>
         <argument>App\Form\CreeParType</argument>
         <argument>App\Form\ModeleType</argument>
@@ -3331,7 +3346,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.W_BTAAL"/>
+      <argument type="service" id=".service_locator.C6TFFOE"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -4227,7 +4242,7 @@
       <factory class="Doctrine\ORM\EntityManager" method="create"/>
     </service>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.cgHk90G"/>
+      <argument type="service" id=".service_locator.sbJkJoq"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -6167,6 +6182,9 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\CommentaireModeleController" class="App\Controller\CommentaireModeleController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\CommentaireModeleController" class="App\Controller\CommentaireModeleController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\CommentaireModeleController" class="App\Controller\CommentaireModeleController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ContactController" class="App\Controller\ContactController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ContactController" class="App\Controller\ContactController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\ContactController" class="App\Controller\ContactController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\CreateurController" class="App\Controller\CreateurController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\CreateurController" class="App\Controller\CreateurController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\CreateurController" class="App\Controller\CreateurController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -6206,6 +6224,8 @@
     <service id=".abstract.instanceof.App\Form\CommandeType" class="App\Form\CommandeType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\CommentaireModeleType" class="App\Form\CommentaireModeleType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\CommentaireModeleType" class="App\Form\CommentaireModeleType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ContactType" class="App\Form\ContactType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\ContactType" class="App\Form\ContactType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\CreateurType" class="App\Form\CreateurType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\CreateurType" class="App\Form\CreateurType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\CreeParType" class="App\Form\CreeParType" autowire="true" abstract="true"/>
@@ -6226,6 +6246,8 @@
     <service id=".abstract.instanceof.App\Repository\CommandeRepository" class="App\Repository\CommandeRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CommentaireModeleRepository" class="App\Repository\CommentaireModeleRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\CommentaireModeleRepository" class="App\Repository\CommentaireModeleRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ContactRepository" class="App\Repository\ContactRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\ContactRepository" class="App\Repository\ContactRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CreateurRepository" class="App\Repository\CreateurRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\CreateurRepository" class="App\Repository\CreateurRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CreeParRepository" class="App\Repository\CreeParRepository" autowire="true" abstract="true"/>
@@ -6625,6 +6647,13 @@
         <argument key="commentaireModeleRepository" type="service_closure" id="App\Repository\CommentaireModeleRepository"/>
       </argument>
     </service>
+    <service id=".service_locator.8UJM1w_" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="contactRepository" type="service_closure" id="App\Repository\ContactRepository"/>
+        <argument key="mailer" type="service_closure" id="mailer.mailer"/>
+      </argument>
+    </service>
     <service id=".service_locator.hAmfW2l" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -6780,7 +6809,7 @@
         <argument key="varianteRepository" type="service_closure" id="App\Repository\VarianteRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.JewepmM" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.ucmfB_a" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\AdminController::admin_main" type="service_closure" id=".service_locator.J_3sFrY"/>
@@ -6794,6 +6823,7 @@
         <argument key="App\Controller\CommentaireModeleController::index" type="service_closure" id=".service_locator.cDuDkH0"/>
         <argument key="App\Controller\CommentaireModeleController::new" type="service_closure" id=".service_locator.cDuDkH0"/>
         <argument key="App\Controller\CommentaireModeleController::show" type="service_closure" id=".service_locator.NKKiN8S"/>
+        <argument key="App\Controller\ContactController::new" type="service_closure" id=".service_locator.8UJM1w_"/>
         <argument key="App\Controller\CreateurController::delete" type="service_closure" id=".service_locator.6knExQH"/>
         <argument key="App\Controller\CreateurController::edit" type="service_closure" id=".service_locator.6knExQH"/>
         <argument key="App\Controller\CreateurController::index" type="service_closure" id=".service_locator.hAmfW2l"/>
@@ -6850,6 +6880,7 @@
         <argument key="App\Controller\CommentaireModeleController:index" type="service_closure" id=".service_locator.cDuDkH0"/>
         <argument key="App\Controller\CommentaireModeleController:new" type="service_closure" id=".service_locator.cDuDkH0"/>
         <argument key="App\Controller\CommentaireModeleController:show" type="service_closure" id=".service_locator.NKKiN8S"/>
+        <argument key="App\Controller\ContactController:new" type="service_closure" id=".service_locator.8UJM1w_"/>
         <argument key="App\Controller\CreateurController:delete" type="service_closure" id=".service_locator.6knExQH"/>
         <argument key="App\Controller\CreateurController:edit" type="service_closure" id=".service_locator.6knExQH"/>
         <argument key="App\Controller\CreateurController:index" type="service_closure" id=".service_locator.hAmfW2l"/>
@@ -7058,12 +7089,13 @@
       <argument type="service" id="debug.argument_resolver.not_tagged_controller.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.W_BTAAL" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.C6TFFOE" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\ChangePasswordFormType" type="service_closure" id="App\Form\ChangePasswordFormType"/>
         <argument key="App\Form\CommandeType" type="service_closure" id="App\Form\CommandeType"/>
         <argument key="App\Form\CommentaireModeleType" type="service_closure" id="App\Form\CommentaireModeleType"/>
+        <argument key="App\Form\ContactType" type="service_closure" id="App\Form\ContactType"/>
         <argument key="App\Form\CreateurType" type="service_closure" id="App\Form\CreateurType"/>
         <argument key="App\Form\CreeParType" type="service_closure" id="App\Form\CreeParType"/>
         <argument key="App\Form\ModeleType" type="service_closure" id="App\Form\ModeleType"/>
@@ -7156,11 +7188,12 @@
         <argument key="doctrine.orm.messenger.doctrine_schema_subscriber" type="service_closure" id="doctrine.orm.messenger.doctrine_schema_subscriber"/>
       </argument>
     </service>
-    <service id=".service_locator.cgHk90G" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.sbJkJoq" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Repository\CommandeRepository" type="service_closure" id="App\Repository\CommandeRepository"/>
         <argument key="App\Repository\CommentaireModeleRepository" type="service_closure" id="App\Repository\CommentaireModeleRepository"/>
+        <argument key="App\Repository\ContactRepository" type="service_closure" id="App\Repository\ContactRepository"/>
         <argument key="App\Repository\CreateurRepository" type="service_closure" id="App\Repository\CreateurRepository"/>
         <argument key="App\Repository\CreeParRepository" type="service_closure" id="App\Repository\CreeParRepository"/>
         <argument key="App\Repository\ModeleRepository" type="service_closure" id="App\Repository\ModeleRepository"/>
@@ -7447,6 +7480,12 @@
     <service id=".service_locator.jIxfAsi.App\Controller\CommentaireModeleController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\CommentaireModeleController"/>
       <argument>App\Controller\CommentaireModeleController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.jIxfAsi" method="withContext"/>
+    </service>
+    <service id=".service_locator.jIxfAsi.App\Controller\ContactController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ContactController"/>
+      <argument>App\Controller\ContactController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.jIxfAsi" method="withContext"/>
     </service>
@@ -7774,12 +7813,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.JewepmM"/>
+      <argument type="service" id=".service_locator.ucmfB_a"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.JewepmM"/>
+      <argument type="service" id=".service_locator.ucmfB_a"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -8741,7 +8780,7 @@
     <service id="SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface" alias="symfonycasts.reset_password.helper"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.JewepmM"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.ucmfB_a"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -8764,9 +8803,9 @@
     <service id=".service_locator.0GV1BZZ" alias=".service_locator.gSv9zYw"/>
     <service id=".service_locator.riGN6sa" alias=".service_locator.YU8H6ve"/>
     <service id=".service_locator.zKHSKL_" alias=".service_locator.LBVzvp6"/>
-    <service id=".service_locator.YgLDRMR" alias=".service_locator.JewepmM"/>
+    <service id=".service_locator.SsEh3yA" alias=".service_locator.ucmfB_a"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
-    <service id=".service_locator.81iTYhj" alias=".service_locator.W_BTAAL"/>
+    <service id=".service_locator.Wg_2iTg" alias=".service_locator.C6TFFOE"/>
     <service id=".service_locator.XW18Svm" alias=".service_locator.TcKhdzh"/>
     <service id=".service_locator.O24_MAy" alias=".service_locator.yY.p4P7"/>
     <service id=".service_locator._eRAkJb" alias=".service_locator.jIxfAsi"/>
@@ -8822,6 +8861,7 @@
     <service id=".service_locator.7YT37y2" alias=".service_locator.cDuDkH0"/>
     <service id=".service_locator..n6RW8." alias=".service_locator.NKKiN8S"/>
     <service id=".service_locator.waR1onL" alias=".service_locator.uhVOkOZ"/>
+    <service id=".service_locator.to5tdwX" alias=".service_locator.8UJM1w_"/>
     <service id=".service_locator.U_D6ImR" alias=".service_locator.hAmfW2l"/>
     <service id=".service_locator..GYx6J9" alias=".service_locator.YdzRrbK"/>
     <service id=".service_locator.hM_N0tD" alias=".service_locator.6knExQH"/>

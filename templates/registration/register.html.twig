@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}inscription{% endblock %}
 
 {% block body %}
 {% if app.user%}
@@ -21,7 +21,7 @@
         }) }}
         {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
+        <button type="submit" class="btn">s'inscrire</button>
     {{ form_end(registrationForm) }}
 {% endif %}
 {% endblock %}

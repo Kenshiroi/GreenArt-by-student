@@ -1,13 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Utilisateur{% endblock %}
+{% block title %}Modifier le profil de {{utilisateur.pseudo}}{% endblock %}
 
 {% block body %}
 {% if (app.user.id == utilisateur.id) or "ROLE_ADMIN" in app.user.roles %}
     <h1>Edit Utilisateur</h1>
 
     {{ include('utilisateur/_form.html.twig', {'button_label': 'Update'}) }}
-    <a href="{{ path('app_forgot_password_request') }}">change password</a>
+    {% if app.user.id == utilisateur.id %}
+    <a href="{{ path('app_forgot_password_request') }}">changer mot de passe</a>
+    {% endif %}
     <a href="{{ path('app_main') }}">Accueil</a>
 
     {{ include('utilisateur/_delete_form.html.twig') }}

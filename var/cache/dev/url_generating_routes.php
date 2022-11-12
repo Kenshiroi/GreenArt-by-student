@@ -27,6 +27,7 @@ return [
     'app_commentaire_modele_show' => [['idModele'], ['_controller' => 'App\\Controller\\CommentaireModeleController::show'], [], [['variable', '/', '[^/]++', 'idModele', true], ['text', '/commentaire/modele']], [], [], []],
     'app_commentaire_modele_edit' => [['idModele'], ['_controller' => 'App\\Controller\\CommentaireModeleController::edit'], [], [['text', '/edit'], ['variable', '/', '[^/]++', 'idModele', true], ['text', '/commentaire/modele']], [], [], []],
     'app_commentaire_modele_delete' => [['idModele'], ['_controller' => 'App\\Controller\\CommentaireModeleController::delete'], [], [['variable', '/', '[^/]++', 'idModele', true], ['text', '/commentaire/modele']], [], [], []],
+    'app_contact' => [[], ['_controller' => 'App\\Controller\\ContactController::new'], [], [['text', '/contact']], [], [], []],
     'app_createur_index' => [[], ['_controller' => 'App\\Controller\\CreateurController::index'], [], [['text', '/createur/']], [], [], []],
     'app_createur_new' => [[], ['_controller' => 'App\\Controller\\CreateurController::new'], [], [['text', '/createur/new']], [], [], []],
     'app_createur_show' => [['id'], ['_controller' => 'App\\Controller\\CreateurController::show'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/createur']], [], [], []],
