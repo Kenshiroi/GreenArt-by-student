@@ -3,10 +3,60 @@
 {% block title %}Model{% endblock %}
 
 {% block body %}
-    <h1>Model {{ model }}</h1>
-    {% if variante is defined %}
-        <h2> Variante {{ variante }} </h2>
-    {% else %}
-        <h2> Pas de variante sélectionnée </h2>
-    {% endif %}
+
+    <h1>Model : {{ model.nomModele }}</h1>
+    
+    <table class="table">
+    <thead>
+            <tr>
+                <th>variantes</th>
+                <th>prix</th>
+                <th>Nombre</th>
+                <th>Operateurs</th>
+                <th></th>
+                <th>PrixTotal</th>
+                <th>
+                    <a href="{{ path('app_model_panier') }}">
+                    <button type="button" class="btn btn-primary">voir panier</button>
+                    </a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for variante in variantes %}
+            <tr>
+                <td>{{ variante.nomVariante }}</td>
+                <td>{{ variante.prixPromoVariante }}</td>
+                {% for nombre in nombres %}
+                    {% if nombre[0] == variante.id %}
+                        <td>{{ nombre[1] }}</td>
+                    {% endif %}
+                {% endfor %}
+                <td>
+                    <a href="{{ path('app_model_-', { 'id' : model.id  , 'nombres' : nombres , 'idNombre' : variante.id    }) }}">
+                    <button type="button" class="btn btn-danger">-</button>
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ path('app_model_+', { 'id' : model.id  , 'nombres' : nombres , 'idNombre' : variante.id    }) }}">
+                    <button type="button" class="btn btn-info">+</button>
+                    </a>
+                </td>
+                {% for nombre in nombres %}
+                    {% if nombre[0] == variante.id %}
+                        <td>{{ nombre[1] * variante.prixPromoVariante }}</td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+        <a href="{{ path('app_model_panier_add', { 'id' : model.id  , 'nombres' : nombres}) }}">
+        <button type="button" class="btn btn-success">mettre le total au panier</button>
+        </a>
+
 {% endblock %}
