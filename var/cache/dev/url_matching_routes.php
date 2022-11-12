@@ -25,11 +25,6 @@ return [
         '/cree/par/new' => [[['_route' => 'app_cree_par_new', '_controller' => 'App\\Controller\\CreeParController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/' => [[['_route' => 'app_main', '_controller' => 'App\\Controller\\MainController::main'], null, ['GET' => 0], null, false, false, null]],
         '/search' => [[['_route' => 'app_search_page', '_controller' => 'App\\Controller\\MainController::search_page'], null, ['GET' => 0], null, false, false, null]],
-        '/panier/add' => [[['_route' => 'app_model_panier_add', '_controller' => 'App\\Controller\\ModelPanierController::model_panier_add'], null, ['GET' => 0], null, false, false, null]],
-        '/panier/deleteAll' => [[['_route' => 'app_model_panier_deleteAll', '_controller' => 'App\\Controller\\ModelPanierController::model_panier_deleteAll'], null, ['GET' => 0], null, false, false, null]],
-        '/panier/delete' => [[['_route' => 'app_model_panier_delete', '_controller' => 'App\\Controller\\ModelPanierController::model_panier_delete'], null, ['GET' => 0], null, false, false, null]],
-        '/panier' => [[['_route' => 'app_model_panier', '_controller' => 'App\\Controller\\ModelPanierController::model_panier'], null, ['GET' => 0], null, true, false, null]],
-        '/panier/commande' => [[['_route' => 'app_model_commande', '_controller' => 'App\\Controller\\ModelPanierController::model_commande'], null, ['GET' => 0], null, false, false, null]],
         '/modele' => [[['_route' => 'app_modele_index', '_controller' => 'App\\Controller\\ModeleController::index'], null, ['GET' => 0], null, true, false, null]],
         '/modele/new' => [[['_route' => 'app_modele_new', '_controller' => 'App\\Controller\\ModeleController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/sous/commande' => [[['_route' => 'app_sous_commande_index', '_controller' => 'App\\Controller\\SousCommandeController::index'], null, ['GET' => 0], null, true, false, null]],
@@ -96,29 +91,26 @@ return [
                 .'|/model(?'
                     .'|/([^/]++)(?'
                         .'|(*:487)'
-                        .'|/(?'
-                            .'|\\+(*:501)'
-                            .'|\\-(*:511)'
-                        .')'
+                        .'|/([^/]++)(*:504)'
                     .')'
                     .'|e/([^/]++)(?'
-                        .'|(*:534)'
-                        .'|/edit(*:547)'
-                        .'|(*:555)'
+                        .'|(*:526)'
+                        .'|/edit(*:539)'
+                        .'|(*:547)'
                     .')'
                 .')'
                 .'|/u(?'
-                    .'|ser/([^/]++)(*:582)'
+                    .'|ser/([^/]++)(*:574)'
                     .'|tilisateur/([^/]++)(?'
-                        .'|(*:612)'
-                        .'|/edit(*:625)'
-                        .'|(*:633)'
+                        .'|(*:604)'
+                        .'|/edit(*:617)'
+                        .'|(*:625)'
                     .')'
                 .')'
                 .'|/variante/([^/]++)(?'
-                    .'|(*:664)'
-                    .'|/edit(*:677)'
-                    .'|(*:685)'
+                    .'|(*:656)'
+                    .'|/edit(*:669)'
+                    .'|(*:677)'
                 .')'
             .')/?$}sDu',
     ],
@@ -147,18 +139,17 @@ return [
         448 => [[['_route' => 'app_sous_commande_edit', '_controller' => 'App\\Controller\\SousCommandeController::edit'], ['idVariante'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
         456 => [[['_route' => 'app_sous_commande_delete', '_controller' => 'App\\Controller\\SousCommandeController::delete'], ['idVariante'], ['POST' => 0], null, false, true, null]],
         487 => [[['_route' => 'app_model_any', '_controller' => 'App\\Controller\\ModelController::model_any'], ['id'], ['GET' => 0], null, false, true, null]],
-        501 => [[['_route' => 'app_model_+', '_controller' => 'App\\Controller\\ModelController::model_plus'], ['id'], ['GET' => 0], null, false, false, null]],
-        511 => [[['_route' => 'app_model_-', '_controller' => 'App\\Controller\\ModelController::model_moins'], ['id'], ['GET' => 0], null, false, false, null]],
-        534 => [[['_route' => 'app_modele_show', '_controller' => 'App\\Controller\\ModeleController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        547 => [[['_route' => 'app_modele_edit', '_controller' => 'App\\Controller\\ModeleController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        555 => [[['_route' => 'app_modele_delete', '_controller' => 'App\\Controller\\ModeleController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        582 => [[['_route' => 'app_user_anyone', '_controller' => 'App\\Controller\\UserController::user_anyone'], ['id'], ['GET' => 0], null, false, true, null]],
-        612 => [[['_route' => 'app_utilisateur_show', '_controller' => 'App\\Controller\\UtilisateurController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        625 => [[['_route' => 'app_utilisateur_edit', '_controller' => 'App\\Controller\\UtilisateurController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        633 => [[['_route' => 'app_utilisateur_delete', '_controller' => 'App\\Controller\\UtilisateurController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        664 => [[['_route' => 'app_variante_show', '_controller' => 'App\\Controller\\VarianteController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        677 => [[['_route' => 'app_variante_edit', '_controller' => 'App\\Controller\\VarianteController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        685 => [
+        504 => [[['_route' => 'app_model_anyvariante', '_controller' => 'App\\Controller\\ModelController::model_anyvariante'], ['id', 'idVariante'], ['GET' => 0], null, false, true, null]],
+        526 => [[['_route' => 'app_modele_show', '_controller' => 'App\\Controller\\ModeleController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        539 => [[['_route' => 'app_modele_edit', '_controller' => 'App\\Controller\\ModeleController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        547 => [[['_route' => 'app_modele_delete', '_controller' => 'App\\Controller\\ModeleController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        574 => [[['_route' => 'app_user_anyone', '_controller' => 'App\\Controller\\UserController::user_anyone'], ['id'], ['GET' => 0], null, false, true, null]],
+        604 => [[['_route' => 'app_utilisateur_show', '_controller' => 'App\\Controller\\UtilisateurController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        617 => [[['_route' => 'app_utilisateur_edit', '_controller' => 'App\\Controller\\UtilisateurController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        625 => [[['_route' => 'app_utilisateur_delete', '_controller' => 'App\\Controller\\UtilisateurController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        656 => [[['_route' => 'app_variante_show', '_controller' => 'App\\Controller\\VarianteController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        669 => [[['_route' => 'app_variante_edit', '_controller' => 'App\\Controller\\VarianteController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        677 => [
             [['_route' => 'app_variante_delete', '_controller' => 'App\\Controller\\VarianteController::delete'], ['id'], ['POST' => 0], null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
