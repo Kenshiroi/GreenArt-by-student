@@ -26,6 +26,8 @@ return [
         '/' => [[['_route' => 'app_main', '_controller' => 'App\\Controller\\MainController::main'], null, ['GET' => 0], null, false, false, null]],
         '/search' => [[['_route' => 'app_search_page', '_controller' => 'App\\Controller\\MainController::search_page'], null, ['GET' => 0], null, false, false, null]],
         '/panier/add' => [[['_route' => 'app_model_panier_add', '_controller' => 'App\\Controller\\ModelPanierController::model_panier_add'], null, ['GET' => 0], null, false, false, null]],
+        '/panier/deleteAll' => [[['_route' => 'app_model_panier_deleteAll', '_controller' => 'App\\Controller\\ModelPanierController::model_panier_deleteAll'], null, ['GET' => 0], null, false, false, null]],
+        '/panier/delete' => [[['_route' => 'app_model_panier_delete', '_controller' => 'App\\Controller\\ModelPanierController::model_panier_delete'], null, ['GET' => 0], null, false, false, null]],
         '/panier' => [[['_route' => 'app_model_panier', '_controller' => 'App\\Controller\\ModelPanierController::model_panier'], null, ['GET' => 0], null, true, false, null]],
         '/modele' => [[['_route' => 'app_modele_index', '_controller' => 'App\\Controller\\ModeleController::index'], null, ['GET' => 0], null, true, false, null]],
         '/modele/new' => [[['_route' => 'app_modele_new', '_controller' => 'App\\Controller\\ModeleController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],

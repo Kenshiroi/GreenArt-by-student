@@ -6,11 +6,14 @@
 	<h1>Panier</h1>
 
     {% if reload == 1 %}
-        <meta http-equiv="refresh" content="1; URL=http://127.0.0.1:8000/panier/">
+        <meta http-equiv="refresh" content="0.1; URL=http://127.0.0.1:8000/panier/">
     {% endif %}
 
 	<table class="table">
     <thead>
+            <tr>
+                <a href="{{ path('app_model_panier_deleteAll', { }) }}">vider tout le panier</a>  
+            </tr>
             <tr>
                 <th>IdModele</th>
                 <th>IdVariante</th>
@@ -22,12 +25,35 @@
             </tr>
         </thead>
         <tbody>
-        {% for articles in panier %}
-            {% for i in 1..articles|length-1 %}
+        {% for article in panier %}
+            {% for i in 1..article|length-1 %}
                 <tr>
-                    <td>{{ articles[0] }}</td>
-                    <td>{{ articles[i][0] }}</td>
-                    <td>{{ articles[i][1] }}</td>
+                    <td>{{ article[0] }}</td>
+                    <td>{{ article[i][0] }}</td>
+                    {% for modele in modeles %}
+                        {% if article[0] == modele.id %}
+                            <td>{{ modele.nomModele }}</td>
+                            {% for variante in modele.getVariantes %}
+                                {% if article[i][0] == variante.id %}
+                                    <td>{{ variante.nomVariante }}</td>
+                                    <td>{{ variante.prixPromoVariante }}</td>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                    <td>{{ article[i][1] }}</td>
+                    {% for modele in modeles %}
+                        {% if article[0] == modele.id %}
+                            {% for variante in modele.getVariantes %}
+                                {% if article[i][0] == variante.id %}
+                                    <td>{{ variante.prixPromoVariante * article[i][1] }}</td>
+                                    <td>
+                                    <a href="{{ path('app_model_panier_delete', {'article' : article , 'idVariante' : article[i][0] , 'nombre' : article[i][1]  }) }}">X</a>
+                                    </td>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
                 </tr>
             {% else %}
                 <tr>
