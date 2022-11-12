@@ -9,21 +9,23 @@
     <table class="table">
     <thead>
             <tr>
-                <th>Id</th>
-                <th>NomVariante</th>
-                <th>PrixVariante</th>
-                <th>PrixPromoVariante</th>
+                <th>variantes</th>
+                <th>prix</th>
                 <th>Nombre</th>
-                <th>Operateurs</th>*
+                <th>Operateurs</th>
+                <th></th>
                 <th>PrixTotal</th>
+                <th>
+                    <a href="{{ path('app_model_panier') }}">
+                    <button type="button" class="btn btn-primary">voir panier</button>
+                    </a>
+                </th>
             </tr>
         </thead>
         <tbody>
         {% for variante in variantes %}
             <tr>
-                <td>{{ variante.id }}</td>
                 <td>{{ variante.nomVariante }}</td>
-                <td>{{ variante.prixVariante }}</td>
                 <td>{{ variante.prixPromoVariante }}</td>
                 {% for nombre in nombres %}
                     {% if nombre[0] == variante.id %}
@@ -31,18 +33,20 @@
                     {% endif %}
                 {% endfor %}
                 <td>
-                    <a href="{{ path('app_model_-', { 'id' : model.id  , 'nombres' : nombres , 'idNombre' : variante.id    }) }}">-</a>
-                    <a> ..... </a>
-                    <a href="{{ path('app_model_+', { 'id' : model.id  , 'nombres' : nombres , 'idNombre' : variante.id    }) }}">+</a>
+                    <a href="{{ path('app_model_-', { 'id' : model.id  , 'nombres' : nombres , 'idNombre' : variante.id    }) }}">
+                    <button type="button" class="btn btn-danger">-</button>
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ path('app_model_+', { 'id' : model.id  , 'nombres' : nombres , 'idNombre' : variante.id    }) }}">
+                    <button type="button" class="btn btn-info">+</button>
+                    </a>
                 </td>
                 {% for nombre in nombres %}
                     {% if nombre[0] == variante.id %}
                         <td>{{ nombre[1] * variante.prixPromoVariante }}</td>
                     {% endif %}
                 {% endfor %}
-                <td>
-                    <a href="{{ path('app_main', { 'id' : model.id  , 'nombres' : nombres , 'idNombre' : variante.id    }) }}">mettre 1 au panier</a>
-                </td>
             </tr>
         {% else %}
             <tr>
@@ -51,6 +55,8 @@
         {% endfor %}
         </tbody>
         </table>
-        <a href="{{ path('app_model_panier_add', { 'id' : model.id  , 'nombres' : nombres}) }}">mettre le total au panier</a>
+        <a href="{{ path('app_model_panier_add', { 'id' : model.id  , 'nombres' : nombres}) }}">
+        <button type="button" class="btn btn-success">mettre le total au panier</button>
+        </a>
 
 {% endblock %}

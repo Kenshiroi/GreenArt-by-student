@@ -76,7 +76,7 @@ class ModelController extends AbstractController
         $idNombre = $request->query->get("idNombre"); //récupérer la ou est fait la modif
 
         for ($i=0; $i<count($nombres); $i++){
-            if ($nombres[$i][0] == $idNombre || $nombres[$i][1] > 0)
+            if ($nombres[$i][0] == $idNombre && $nombres[$i][1] > 0)
             {
                 $nombres[$i][1] = $nombres[$i][1] -1; //faire la modif
             }

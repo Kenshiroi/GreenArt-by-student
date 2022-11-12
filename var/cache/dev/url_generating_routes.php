@@ -47,6 +47,7 @@ return [
     'app_model_panier_deleteAll' => [[], ['_controller' => 'App\\Controller\\ModelPanierController::model_panier_deleteAll'], [], [['text', '/panier/deleteAll']], [], [], []],
     'app_model_panier_delete' => [[], ['_controller' => 'App\\Controller\\ModelPanierController::model_panier_delete'], [], [['text', '/panier/delete']], [], [], []],
     'app_model_panier' => [[], ['_controller' => 'App\\Controller\\ModelPanierController::model_panier'], [], [['text', '/panier/']], [], [], []],
+    'app_model_commande' => [[], ['_controller' => 'App\\Controller\\ModelPanierController::model_commande'], [], [['text', '/panier/commande']], [], [], []],
     'app_modele_index' => [[], ['_controller' => 'App\\Controller\\ModeleController::index'], [], [['text', '/modele/']], [], [], []],
     'app_modele_new' => [[], ['_controller' => 'App\\Controller\\ModeleController::new'], [], [['text', '/modele/new']], [], [], []],
     'app_modele_show' => [['id'], ['_controller' => 'App\\Controller\\ModeleController::show'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/modele']], [], [], []],

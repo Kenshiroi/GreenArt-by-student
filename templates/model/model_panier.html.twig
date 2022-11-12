@@ -12,11 +12,11 @@
 	<table class="table">
     <thead>
             <tr>
-                <a href="{{ path('app_model_panier_deleteAll', { }) }}">vider tout le panier</a>  
+                <a href="{{ path('app_model_panier_deleteAll', { }) }}">
+                <button type="button" class="btn btn-danger">vider tout le panier</button>
+                </a>  
             </tr>
             <tr>
-                <th>IdModele</th>
-                <th>IdVariante</th>
                 <th>NomModele</th>
                 <th>NomVariante</th>
                 <th>PrixUnitaire</th>
@@ -28,8 +28,6 @@
         {% for article in panier %}
             {% for i in 1..article|length-1 %}
                 <tr>
-                    <td>{{ article[0] }}</td>
-                    <td>{{ article[i][0] }}</td>
                     {% for modele in modeles %}
                         {% if article[0] == modele.id %}
                             <td>{{ modele.nomModele }}</td>
@@ -48,7 +46,9 @@
                                 {% if article[i][0] == variante.id %}
                                     <td>{{ variante.prixPromoVariante * article[i][1] }}</td>
                                     <td>
-                                    <a href="{{ path('app_model_panier_delete', {'article' : article , 'idVariante' : article[i][0] , 'nombre' : article[i][1]  }) }}">X</a>
+                                    <a href="{{ path('app_model_panier_delete', {'article' : article , 'idVariante' : article[i][0] , 'nombre' : article[i][1]  }) }}">
+                                    <button type="button" class="btn btn-danger">X</button>
+                                    </a>
                                     </td>
                                 {% endif %}
                             {% endfor %}

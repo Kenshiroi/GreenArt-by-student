@@ -177,5 +177,11 @@ class ModelPanierController extends AbstractController
             ]);
         }
     }
+    #[Route('/commande', name: 'app_model_commande', methods: ['GET'])]
+    public function model_commande(ModeleRepository $modeles): Response
+    {
+        return $this->render('model/model_commander.html.twig', [
+        ]);
+    }
 } 
  ?>
