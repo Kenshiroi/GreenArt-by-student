@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Model{% endblock %}
+
+{% block body %}
+	<h1>Panier</h1>
+
+    {% if reload == 1 %}
+        <meta http-equiv="refresh" content="0.1; URL=http://127.0.0.1:8000/panier/">
+    {% endif %}
+    
+    {% set prixtotal = 0 %}
+	<table class="table">
+    <thead>
+            <tr>
+                <a href="{{ path('app_model_panier_deleteAll', { }) }}">
+                <button type="button" class="btn btn-danger">vider tout le panier</button>
+                </a>  
+            </tr>
+            <tr>
+                <th>Image</th>
+                <th>Nom du Modele</th>
+                <th>Nom de la Variante</th>
+                <th>Prix Unitaire</th>
+                <th>Nombre</th>
+                <th>Prix Total</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article in panier %}
+            {% for i in 1..article|length-1 %}
+                <tr>
+                    {% for modele in modeles %}
+                        {% if article[0] == modele.id %}
+                            <td><img src="{{ asset('images/' ~ modele.imageModele)}}" width="50" height="50"/></td>
+                            <td>{{ modele.nomModele }}</td>
+                            {% for variante in modele.getVariantes %}
+                                {% if article[i][0] == variante.id %}
+                                    <td>{{ variante.nomVariante }}</td>
+                                    <td>{{ variante.prixPromoVariante }} euros</td>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                    <td>{{ article[i][1] }}</td>
+                    {% for modele in modeles %}
+                        {% if article[0] == modele.id %}
+                            {% for variante in modele.getVariantes %}
+                                {% if article[i][0] == variante.id %}
+                                    {% set prixtotal = prixtotal + (variante.prixPromoVariante * article[i][1]) %}
+                                    <td>{{ variante.prixPromoVariante * article[i][1] }} euros</td>
+                                    <td>
+                                    <a href="{{ path('app_model_panier_delete', {'article' : article , 'idVariante' : article[i][0] , 'nombre' : article[i][1]  }) }}">
+                                    <button type="button" class="btn btn-danger">X</button>
+                                    </a>
+                                    </td>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">no records found</td>
+                </tr>
+            {% endfor %}
+        {% endfor %}
+        </tbody>
+        </table>
+        {% if app.user %}
+        Total : {{ prixtotal }} euros<br/>
+        <a href="{{path('app_model_commande')}}">
+        <button type="button" class="btn btn-success">acheter tout</button>
+        </a>
+        {% else %}
+        <label>Vous devez vous connecter pour commander</label><br/>
+        <a href="{{path('app_login')}}">
+        <button type="button" class="btn btn-success">Connexion</button>
+        </a>
+        {% endif %}
+{% endblock %}

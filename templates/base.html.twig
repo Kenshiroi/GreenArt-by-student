@@ -13,17 +13,53 @@
 			{% block javascripts %}
 			{{ encore_entry_script_tags('app') }}
 			{% endblock %}
-			{% if app.user %}
-			<img src="{{ asset('images/' ~ app.user.image)}}" width="50" height="50"/>
-			<p>Utilisateur connecté : {{ app.user.pseudo }}{% if "ROLE_ADMIN" in app.user.roles %} (ADMIN){%else%}{% if "ROLE_CREATOR" in app.user.roles %} (CREATEUR){% endif %}{% endif %}</p>
-			<a href="{{ path('app_utilisateur_show', {'id': app.user.id}) }}">Profil</a>
-			<a href="{{ path('app_logout', {'id': app.user.id}) }}">deconnexion</a>
-			{% else %}
-			<a href="{{ path('app_login') }}">Se connecter</a>
-			<a href="{{ path('app_register') }}">S'inscrire</a>
-			{% endif %}
+			<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="{{ path('app_main') }}">Accueil
+          </a>
+		{% if app.user %}
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('app_utilisateur_show', {'id': app.user.id}) }}">Profil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('app_logout', {'id': app.user.id}) }}">Deconnexion</a>
+        </li>
+		  <li class="nav-item">
+			  <a class="nav-link" href="{{ path('app_model_panier') }}">Panier</a>
+		  </li>
+		  <li class="nav-item">
+			  <a class="nav-link" href="{{ path('app_contact') }}">Contact</a>
+		  </li>
+		  {% if "ROLE_ADMIN" in app.user.roles %}
+		  <li class="nav-item">
+			  <a class="nav-link" href="{{ path('app_utilisateur_index') }}">Gerer les utilisateurs</a>
+		  </li>
+		  <li class="nav-item">
+			  <a class="nav-link" href="{{ path('app_modele_index') }}">Gerer les modeles</a>
+		  </li>
+		  {% endif %}	
+		  <li align="right">
+			<p><img src="{{ asset('images/' ~ app.user.image)}}" width="50" height="50"/>
+			Utilisateur connecté : {{ app.user.pseudo }}{% if "ROLE_SUPERADMIN" in app.user.roles %} (SUPERADMIN){%else%}{% if "ROLE_ADMIN" in app.user.roles %} (ADMIN){%else%}{% if "ROLE_CREATOR" in app.user.roles %} (CREATEUR){% endif %}{% endif %}{% endif %}</p>
+        </li>
+	  {% else %}
+	  <li class="nav-item">
+          <a class="nav-link" href="{{ path('app_login') }}">Se connecter</a>
+        </li>
+		  <li class="nav-item">
+          <a class="nav-link" href="{{ path('app_register') }}">S'inscrire</a>
+        </li>
+	  {% endif %}
+      </ul>
+    </div>
+</nav>
+			
 		</head>
     <body>
         {% block body %}{% endblock %}
     </body>
 </html>
+

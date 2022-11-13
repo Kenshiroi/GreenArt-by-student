@@ -13,7 +13,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private ?int $id = null;    
 
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
@@ -31,7 +31,13 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $pseudo = null;
 
     #[ORM\Column]
+    private ?bool $banUser = false;
+
+    #[ORM\Column]
     private ?string $image = "imagebase.png";
+
+
+
 
     public function getId(): ?int
     {
@@ -114,6 +120,18 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+        public function getBanUser(): bool
+    {
+        return $this->banUser;
+    }
+
+    public function setBanUser(string $banUser): self
+    {
+        $this->banUser = $banUser;
 
         return $this;
     }

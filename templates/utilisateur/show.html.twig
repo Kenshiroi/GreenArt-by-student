@@ -25,13 +25,35 @@
             </tr>
             <tr>
                 <th>Role</th>
-                <td>{% if "ROLE_ADMIN" in utilisateur.roles %}Admin{% else %}{% if "ROLE_CREATOR" in utilisateur.roles %}Createur{% else %}Utlisateur{% endif %}{% endif %}</td>
+                <td>{% if "ROLE_SUPERADMIN" in utilisateur.roles %}Superadmin{% else %}{% if "ROLE_ADMIN" in utilisateur.roles %}Admin{% else %}Utlisateur{% endif %}{% endif %}</td>
+            </tr>
+            
+            <tr>
+                <th>Statut du compte</th>
+                <td>{% if utilisateur.banUser == 1 %} Banni {% else %} Pas banni {%endif%}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_main') }}">Acceuil</a>
+    <a href="{{ path('app_main') }}">Accueil</a>
     {% if (app.user.id == utilisateur.id) or "ROLE_ADMIN" in app.user.roles %}
     <a href="{{ path('app_utilisateur_edit', {'id': utilisateur.id}) }}">Editer profil</a>
+    {% if "ROLE_ADMIN" in app.user.roles %}
+                    {% if ("ROLE_SUPERADMIN" in utilisateur.roles) == false and utilisateur.banUser == 0%}
+                    <a href="{{ path('app_up', {'user': utilisateur.id})  }}">promouvoir</a>
+                    {%endif%}
+                    
+                    {% if "ROLE_ADMIN" in utilisateur.roles and utilisateur.banUser == 0 %}
+                    <a href="{{ path('app_down', {'user': utilisateur.id})  }}">destituer</a>
+                    {% endif %}
+                    {% if utilisateur.banUser == 0 and ("ROLE_ADMIN" in utilisateur.roles == false) %}
+                    <a href="{{ path('app_ban', {'user': utilisateur.id})  }}">bannir</a>
+                    {%else%}
+                    {% if utilisateur.banUser == 1 %}
+                    <a href="{{ path('app_unban', {'user': utilisateur.id})  }}">debannir</a>
+                    
+                    {% endif %}
+                    {% endif %} 
+                    {% endif %}
     {%endif%}
 {% endblock %}

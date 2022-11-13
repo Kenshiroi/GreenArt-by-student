@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Modele;
 use App\Repository\VarianteRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -93,10 +94,13 @@ class Variante
         return $this;
     }
 
-    public function getIdModele(): ?Modele
+    public function getIdModele(): ?string
     {
-        return $this->idModele;
-    }
+        if(is_null($this->idModele)){
+            return $this->idModele; 
+        }
+        return $this->idModele->getId();
+    }   
 
     public function setIdModele(?Modele $idModele): self
     {

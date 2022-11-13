@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Model{% endblock %}
+
+{% block body %}
+
+    <h1>Model : {{ model.nomModele }}</h1>
+    
+    <table class="table">
+    <thead>
+            <tr>
+                <th>Image</th>
+                <th>variantes</th>
+                <th>prix</th>
+                <th>Nombre</th>
+                <th>Operateurs</th>
+                <th></th>   
+                <th>Prix Total</th>
+                <th>
+                    <a href="{{ path('app_model_panier') }}">
+                    <button type="button" class="btn btn-primary">voir panier</button>
+                    </a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for variante in variantes %}
+            <tr>
+                <td><img src="{{ asset('images/' ~ model.imageModele)}}" width="50" height="50"/></td>
+                <td>{{ variante.nomVariante }}</td>
+                <td>{{ variante.prixPromoVariante }} euros</td>
+                {% for nombre in nombres %}
+                    {% if nombre[0] == variante.id %}
+                        <td>{{ nombre[1] }}</td>
+                    {% endif %}
+                {% endfor %}
+                <td>
+                    <a href="{{ path('app_model_-', { 'id' : model.id  , 'nombres' : nombres , 'idNombre' : variante.id    }) }}">
+                    <button type="button" class="btn btn-danger">-</button>
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ path('app_model_+', { 'id' : model.id  , 'nombres' : nombres , 'idNombre' : variante.id    }) }}">
+                    <button type="button" class="btn btn-info">+</button>
+                    </a>
+                </td>
+                
+                {% for nombre in nombres %}
+                    {% if nombre[0] == variante.id %}
+                        <td>{{ nombre[1] * variante.prixPromoVariante }} euros</td>
+                    {% endif %}
+
+                {% endfor %}
+                        {% if "ROLE_ADMIN" in app.user.roles %}
+                <td>
+            <a href="{{ path('app_admin_editModel_delVariante', { 'idModel' : model.id , 'idVariante' : variante.id}) }}">
+        <button type="button" class="btn btn-success">Supprimer variante</button>
+        </a>
+        
+                </td>
+                {%endif%}
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+        <a href="{{ path('app_model_panier_add', { 'id' : model.id  , 'nombres' : nombres}) }}">
+        <button type="button" class="btn btn-success">mettre le total au panier</button>
+        </a><br/>
+        {% if "ROLE_ADMIN" in app.user.roles %}
+            <a href="{{ path('app_admin_editmodel_addVariant', { 'idModel' : model.id }) }}">
+        <button type="button" class="btn btn-success">Ajouter variante</button>
+        </a>
+        <a href="{{ path('app_admin_editModel', { 'id' : model.id }) }}">
+        <button type="button" class="btn btn-success">Editer modele</button>
+        </a>
+        <a href="{{ path('app_admin_delModel', { 'idModel' : model.id }) }}">
+        <button type="button" class="btn btn-success">Supprimer modele</button>
+        </a>
+        {%endif%}
+
+{% endblock %}

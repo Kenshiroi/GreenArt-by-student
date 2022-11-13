@@ -1,7 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}Recherche{% endblock %}
 
 {% block body %}
-    <h1>Accueil</h1>
+    <h1>Recherche</h1>
+  <form action='/search' method="GET">
+<input id="search"  type="text" name="r" placeholder="Type here">
+<label for="fig-select">Type de figurine :</label>
+
+<select name="t" id="fig-select">
+    <option value=""></option>
+    <option value="monstre">Monstre</option>
+    <option value="Hero">Hero</option>
+    <option value="map">Map</option>
+
+</select>
+<input id="submit" type="submit" >
+</form>
+
+    <h2> </h2>
+    {% set searched = 'bar' %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>NomModele</th>
+                <th>ImageModele</th>
+                <th>DescriptionModele</th>
+                <th>DateAjout</th>
+                <th>Aller au produit </th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for modele in modeles %}
+          <tr>
+                <td>{{ modele.id }}</td>
+                <td>{{ modele.nomModele }}</td>
+                <td><img src="{{ asset('images/' ~ modele.imageModele)}}" width="50" height="50"/></td>
+                <td>{{ modele.descriptionModele }}</td>
+                <td>{{ modele.dateAjout ? modele.dateAjout|date('Y-m-d H:i:s') : '' }}</td>
+                <td><a href={{'/model/' ~ modele.id}}>Lien produit</a></td>
+        {% else %}
+            <tr>
+                <td colspan="6">Aucun modele trouve.</td>
+            </tr>
+           
+        {% endfor %}
+
+         
+        </tbody>
+    </table>
 {% endblock %}

@@ -4,8 +4,10 @@ namespace App\Form;
 
 use App\Entity\Modele;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class ModeleType extends AbstractType
 {
@@ -13,10 +15,14 @@ class ModeleType extends AbstractType
     {
         $builder
             ->add('nomModele')
-            ->add('imageModele')
+            ->add('imageModele', FileType::class, [
+                'label' => 'Image',
+                'mapped' => false,
+                'required' => false,
+                
+            ])
             ->add('descriptionModele')
-            ->add('dateAjout')
-        ;
+            ->add('dateAjout');
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -26,3 +32,5 @@ class ModeleType extends AbstractType
         ]);
     }
 }
+
+?>

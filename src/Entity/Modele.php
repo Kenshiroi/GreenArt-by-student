@@ -20,7 +20,7 @@ class Modele
     private ?string $nomModele = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $imageModele = null;
+    private ?string $imageModele = 'modelbase.jpg';
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $descriptionModele = null;
@@ -36,9 +36,6 @@ class Modele
 
     #[ORM\OneToMany(mappedBy: 'idModele', targetEntity: CommentaireModele::class)]
     private Collection $commentaireModeles;
-
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $fichierModele = null;
 
     public function __construct()
     {
@@ -190,15 +187,5 @@ class Modele
         return $this;
     }
 
-    public function getFichierModele(): ?string
-    {
-        return $this->fichierModele;
-    }
-
-    public function setFichierModele(string $fichierModele): self
-    {
-        $this->fichierModele = $fichierModele;
-
-        return $this;
-    }
+ 
 }

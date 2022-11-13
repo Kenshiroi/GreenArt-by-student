@@ -3,6 +3,7 @@
 {% block title %}Utilisateur index{% endblock %}
 
 {% block body %}
+
     <h1>Utilisateur index</h1>
 
     <table class="table">
@@ -13,7 +14,7 @@
                 <th>Pseudo</th>
                 <th>Image</th>
                 <th>Roles</th>
-                <th>Password</th>
+                <th>Status compte</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -25,10 +26,25 @@
                 <td>{{ utilisateur.pseudo }}</td>
                 <td><img src="{{ asset('images/' ~ utilisateur.image)}}" width="50" height="50"/></td>
                 <td>{{ utilisateur.roles ? utilisateur.roles|json_encode : '' }}</td>
-                <td>{{ utilisateur.password }}</td>
+                <td>{% if utilisateur.banUser == true %} Banni {% else%} Pas banni {%endif%}
                 <td>
                     <a href="{{ path('app_utilisateur_show', {'id': utilisateur.id}) }}">show</a>
                     <a href="{{ path('app_utilisateur_edit', {'id': utilisateur.id}) }}">edit</a>
+                    {% if "ROLE_ADMIN" in app.user.roles %}
+                    {% if ("ROLE_SUPERADMIN" in utilisateur.roles) == false and utilisateur.banUser == 0%}
+                    <a href="{{ path('app_up', {'user': utilisateur.id})  }}">promouvoir</a>
+                    {%endif%}
+                    {% if "ROLE_ADMIN" in utilisateur.roles and utilisateur.banUser == 0%}
+                    <a href="{{ path('app_down', {'user': utilisateur.id})  }}">destituer</a>
+                    {%endif%}
+                    {% if utilisateur.banUser == 0 and ("ROLE_ADMIN" in utilisateur.roles == false) %}
+                    <a href="{{ path('app_ban', {'user': utilisateur.id})  }}">bannir</a>
+                    {%else%}
+                    {% if utilisateur.banUser == 1 %}
+                    <a href="{{ path('app_unban', {'user': utilisateur.id})  }}">debannir</a>
+                    {% endif %}
+                    {% endif %}
+                    {% endif %} 
                 </td>
             </tr>
         {% else %}
@@ -39,5 +55,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_utilisateur_new') }}">Create new</a>
 {% endblock %}

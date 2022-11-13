@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin{% endblock %}
+
+{% block body %}
+    <h1>Admin</h1>
+
+    {% if formModel is defined %}
+        <h2>Add Model</h2>
+        {{ form_start(formModel) }}
+            {{ form_widget(formModel) }}
+            <button class="btn">Ajouter les variantes</button>
+        {{ form_end(formModel) }}
+    {% endif %}
+    {% if formModel2 is defined %}
+        <h2>Edit Model</h2>
+        {{ form_start(formModel2) }}
+            {{ form_widget(formModel2) }}
+            <button class="btn">Terminer</button>
+        {{ form_end(formModel2) }}
+    {% endif %}
+
+    {% if formVariant is defined %}
+        <h2>Add variante to {{idModel}}</h2>
+        {{ form_start(formVariant) }}
+            {{ form_widget(formVariant) }}
+            <button class="btn" name="nextStep" value="otherVariant">Ajouter une autre variante</button>
+            <button class="btn">Terminer et afficher le modele</button>
+        {{ form_end(formVariant) }}
+    {% endif %}
+
+{% endblock %}
