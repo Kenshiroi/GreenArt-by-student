@@ -1,0 +1,13 @@
+{% if formModel is defined %}
+    {{ form_start(formModel) }}
+        {{ form_widget(formModel) }}
+        <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(formModel) }}
+{% endif %}
+
+{% if formVariant is defined %}
+    {{ form_start(formVariant) }}
+        {{ form_widget(formVariant) }}
+        <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(formVariant) }}
+{% endif %}

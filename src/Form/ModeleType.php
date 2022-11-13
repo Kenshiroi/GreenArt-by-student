@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Modele;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,8 +16,8 @@ class ModeleType extends AbstractType
             ->add('nomModele')
             ->add('imageModele')
             ->add('descriptionModele')
-            ->add('dateAjout')
-        ;
+            ->add('fichierModele')
+            ->add('dateAjout');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -4,5 +4,22 @@
 
 {% block body %}
     <h1>Admin</h1>
-    <h2>Add Model</h2>
+
+    {% if formModel is defined %}
+        <h2>Add Model</h2>
+        {{ form_start(formModel) }}
+            {{ form_widget(formModel) }}
+            <button class="btn">Ajouter les variantes</button>
+        {{ form_end(formModel) }}
+    {% endif %}
+
+    {% if formVariant is defined %}
+        <h2>Add variante to {{idModel}}</h2>
+        {{ form_start(formVariant) }}
+            {{ form_widget(formVariant) }}
+            <button class="btn" name="nextStep" value="otherVariant">Ajouter une autre variante</button>
+            <button class="btn">Terminer et afficher le modele</button>
+        {{ form_end(formVariant) }}
+    {% endif %}
+
 {% endblock %}

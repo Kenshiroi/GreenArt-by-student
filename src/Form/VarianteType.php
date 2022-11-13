@@ -16,7 +16,6 @@ class VarianteType extends AbstractType
             ->add('prixVariante')
             ->add('prixPromoVariante')
             ->add('caraVariante')
-            ->add('idModele')
         ;
     }
 
